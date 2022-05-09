@@ -26,6 +26,11 @@ class RoleResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-shield-check';
 
+    public static function getNavigationGroup(): string
+    {
+        return __('resources.groups.management');
+    }
+
     public static function getLabel(): string
     {
         return __('resources.roles.label');
