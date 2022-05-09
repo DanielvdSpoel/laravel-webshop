@@ -23,6 +23,7 @@ return [
         'profile_picture' => 'Profielfoto',
         'first_name' => 'Voornaam',
         'last_name' => 'Achternaam',
+        'password' => 'Wachtwoord',
     ],
     'helpers' => [
         'select_all' => 'Selecteer alle beschikbare opties',

@@ -116,12 +116,6 @@ class RoleResource extends Resource
             return $names;
         }, []);
 
-        //ray($names);
-        /*return collect(Filament::getResources())->reduce(function ($roles, $resource) {
-            $role = Str::lower(Str::before(Str::afterLast($resource, '\\'), 'Resource'));+-
-            $roles[$role] = $role;
-            return $roles;
-        }, []);*/
     }
 
     protected static function getEntitiesCards(): array

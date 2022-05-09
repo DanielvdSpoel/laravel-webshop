@@ -8,12 +8,16 @@ use App\Models\Employee;
 use Filament\Forms;
 use Filament\Forms\Components\BelongsToManyMultiSelect;
 use Filament\Resources\Form;
+use Filament\Resources\Pages\CreateRecord;
+use Filament\Resources\Pages\Page;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 use Filament\Tables\Columns\TagsColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Hash;
+use Phpsa\FilamentPasswordReveal\Password;
 
 class EmployeeResource extends Resource
 {
@@ -59,6 +63,11 @@ class EmployeeResource extends Resource
                     ->label(__('forms.labels.roles'))
                     ->preload()
                     ->relationship('roles', 'name'),
+                Password::make('password')->label(trans('forms.labels.password'))
+                    ->maxLength(255)
+                    ->hidden(fn (Page $livewire) => !$livewire instanceof CreateRecord)
+            ->dehydrateStateUsing(fn ($state) => !empty($state) ? Hash::make($state) : ""),
+
             ]);
     }
 
