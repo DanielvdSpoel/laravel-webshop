@@ -25,8 +25,16 @@ class RoleResource extends Resource
     protected static ?string $model = \Spatie\Permission\Models\Role::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-shield-check';
-    protected static ?string $label = 'Rol';
-    protected static ?string $pluralLabel = 'Rollen';
+
+    public static function getLabel(): string
+    {
+        return __('resources.roles.label');
+    }
+
+    public static function getPluralLabel(): string
+    {
+        return __('resources.roles.label_plural');
+    }
 
 
     public static function form(Form $form): Form
