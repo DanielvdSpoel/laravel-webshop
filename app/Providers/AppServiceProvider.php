@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
 
         Filament::serving(function () {
-            Filament::registerTheme(mix('css/app.css'));
+            Filament::registerTheme(mix('css/filament.css'));
         });
     }
 }
