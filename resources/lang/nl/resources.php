@@ -8,10 +8,15 @@ return [
         'label' => 'Medewerker',
         'label_plural' => 'Medewerkers',
     ],
+    'brands' => [
+        'label' => 'Merk',
+        'label_plural' => 'Merken',
+    ],
     'filters' => [
         'has_role' => 'Heeft rol:',
     ],
     'groups' => [
-        'management' => 'Beheer'
+        'management' => 'Beheer',
+        'store' => 'Winkel',
     ]
 ];

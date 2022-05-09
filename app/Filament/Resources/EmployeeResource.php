@@ -22,6 +22,7 @@ use Phpsa\FilamentPasswordReveal\Password;
 class EmployeeResource extends Resource
 {
     public array $permissions = ['view', 'create', 'update', 'delete', 'view_any', 'delete_any'];
+
     protected static ?string $model = Employee::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-users';

@@ -24,6 +24,13 @@ return [
         'first_name' => 'Voornaam',
         'last_name' => 'Achternaam',
         'password' => 'Wachtwoord',
+        'updated_at' => 'Laatst bijgewerkt',
+        'created_at' => 'Gecreëerd op',
+        'description' => 'Omschrijving',
+        'logo' => 'Logo',
+        'is_visible' => 'Is zichtbaar voor klanten',
+        'slug' => 'Slug',
+        'visibility' => 'Zichtbaarheid',
     ],
     'helpers' => [
         'select_all' => 'Selecteer alle beschikbare opties',
