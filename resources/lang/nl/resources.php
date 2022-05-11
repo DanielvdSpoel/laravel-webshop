@@ -12,11 +12,15 @@ return [
         'label' => 'Merk',
         'label_plural' => 'Merken',
     ],
+    'products' => [
+        'label' => 'Product',
+        'label_plural' => 'Producten',
+    ],
     'filters' => [
         'has_role' => 'Heeft rol:',
     ],
     'groups' => [
         'management' => 'Beheer',
-        'store' => 'Winkel',
+        'shop' => 'Winkel',
     ]
 ];

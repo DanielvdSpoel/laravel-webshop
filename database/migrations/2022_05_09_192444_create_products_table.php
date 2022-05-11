@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Brand;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,13 +14,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('brands', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(Brand::class)->nullable()->constrained()->nullOnDelete();
             $table->string('name')->unique();
             $table->string('slug')->unique();
-            $table->string('logo')->nullable();
-            $table->text('description')->nullable();
-            $table->boolean('is_visible')->default(true);
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('brands');
+        Schema::dropIfExists('products');
     }
 };

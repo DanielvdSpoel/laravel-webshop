@@ -24,7 +24,7 @@ class BrandResource extends Resource
 
     public static function getNavigationGroup(): string
     {
-        return __('resources.groups.store');
+        return __('resources.groups.shop');
     }
 
     public static function getLabel(): string
