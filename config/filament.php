@@ -90,7 +90,7 @@ return [
     'auth' => [
         'guard' => 'employee',
         'pages' => [
-            'login' => \Filament\Http\Livewire\Auth\Login::class,
+            'login' => \JeffGreco13\FilamentBreezy\Http\Livewire\Auth\Login::class,
         ],
     ],
 
