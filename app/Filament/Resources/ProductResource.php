@@ -107,9 +107,16 @@ class ProductResource extends Resource
                                 Placeholder::make(__('forms.labels.connections')),
                                 BelongsToSelect::make('brand_id')
                                     ->relationship('brand', 'name')
-                                    ->searchable()
+                                    ->createOptionForm(BrandResource::getFormFields())
                                     ->label(__('forms.labels.brand'))
-                                    ->createOptionForm(BrandResource::getFormFields()),
+                                    ->searchable()
+                                    ->preload(),
+                                Forms\Components\BelongsToManyMultiSelect::make('categories')
+                                    ->relationship('categories', 'name')
+                                    ->createOptionForm(CategoryResource::getFormFields())
+                                    ->label(__('forms.labels.categories'))
+                                    ->searchable()
+                                    ->preload(),
 
                             ])->columnSpan(1),
                         Forms\Components\Card::make()
