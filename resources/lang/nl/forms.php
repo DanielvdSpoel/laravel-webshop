@@ -36,6 +36,7 @@ return [
         'brand' => 'Merk',
         'children_categories' => 'Subcategorieën',
         'parent_category' => 'Bovenliggende categorie',
+        'product_count' => 'Aantal producten',
     ],
     'helpers' => [
         'select_all' => 'Selecteer alle beschikbare opties',

@@ -16,6 +16,8 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Columns\TagsColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
 
@@ -114,17 +116,26 @@ class CategoryResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('slug'),
-                Tables\Columns\BooleanColumn::make('is_visible'),
-                Tables\Columns\TextColumn::make('parent_id'),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
+                Tables\Columns\TextColumn::make('name')
+                    ->label(__('forms.labels.name'))
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('parent.name')
+                    ->label(__('forms.labels.parent_category'))
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('product_count')
+                    ->getStateUsing(fn(?Category $record): ?string => $record ? $record->products->count() : null)
+                    ->label(__('forms.labels.product_count'))
+                    ->sortable(),
+                Tables\Columns\BooleanColumn::make('is_visible')
+                    ->label(__('forms.labels.is_visible'))
+                    ->sortable(),
+                TagsColumn::make('children')->getStateUsing(fn(?Category $record): ?array => $record->children()->pluck('name')->toArray())
+                    ->label(__('forms.labels.children_categories'))
             ])
             ->filters([
-                //
+                SelectFilter::make('parent_id')->relationship('parent', 'name')->label(__('forms.labels.parent_category')),
             ]);
     }
 
