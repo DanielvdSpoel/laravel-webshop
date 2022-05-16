@@ -16,6 +16,10 @@ return [
         'label' => 'Product',
         'label_plural' => 'Producten',
     ],
+    'categories' => [
+        'label' => 'Categorie',
+        'label_plural' => 'Categorieën',
+    ],
     'filters' => [
         'has_role' => 'Heeft rol:',
     ],

@@ -34,6 +34,8 @@ return [
         'images' => 'Afbeeldingen',
         'connections' => 'Connecties',
         'brand' => 'Merk',
+        'children_categories' => 'Subcategorieën',
+        'parent_category' => 'Bovenliggende categorie',
     ],
     'helpers' => [
         'select_all' => 'Selecteer alle beschikbare opties',

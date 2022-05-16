@@ -109,11 +109,8 @@ class ProductResource extends Resource
                                     ->relationship('brand', 'name')
                                     ->searchable()
                                     ->label(__('forms.labels.brand'))
-                                    ->createOptionForm([
-                                        Forms\Components\TextInput::make('name')
-                                            ->label(__('forms.labels.name'))
-                                            ->required()
-                                    ]),
+                                    ->createOptionForm(BrandResource::getFormFields()),
+
                             ])->columnSpan(1),
                         Forms\Components\Card::make()
                             ->schema([
