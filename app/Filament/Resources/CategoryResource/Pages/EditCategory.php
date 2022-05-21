@@ -12,9 +12,9 @@ class EditCategory extends EditRecord
 
     protected function afterSave()
     {
-        foreach ($this->form->getState()['children'] as $child) {
+        /*foreach ($this->form->getState()['children'] as $child) {
             $this->record->children()->save(Category::find($child));
-        }
+        }*/
 
         //$this->record->syncPermissions($permissions->keys());
     }

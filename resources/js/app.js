@@ -9,7 +9,7 @@ createInertiaApp({
         const messages = JSON.parse(props.initialPage.props.translations);
 
         const i18n = createI18n({
-            locale: 'nl',
+            locale: props.initialPage.props.current_language,
             fallbackLocale: 'en',
             globalInjection: true,
             messages,

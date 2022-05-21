@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\UpdateLanguageController;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
@@ -14,8 +16,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return inertia('Welcome', [
-        'categories' => Category::with('children')->get(),
-    ]);
-});
+Route::get('/', [PageController::class, 'home'])->name('home');
+Route::inertia('/test', 'Test');
+Route::patch('/update-language', UpdateLanguageController::class)->name('update-language');
