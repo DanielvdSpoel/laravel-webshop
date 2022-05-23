@@ -14,9 +14,9 @@ class PasswordResetTest extends TestCase
 
     public function test_user_can_visit_password_reset_page()
     {
-        $this->get(route('password.request'))
+        $this->get(route('password.forgot'))
             ->assertInertia(fn(Assert $page) => $page
-                ->component('Auth/PasswordEmail')
+                ->component('Auth/Password/ForgotPassword')
             );
 
     }
@@ -25,7 +25,7 @@ class PasswordResetTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $this->post(route('password.request'), [
+        $this->post(route('password.email'), [
             'email' => $user->email
         ]);
 
@@ -39,7 +39,7 @@ class PasswordResetTest extends TestCase
 
         $user = User::factory()->create();
 
-        $this->post(route('password.reset'), [
+        $this->post(route('password.update'), [
                 'email' => $user->email,
                 'password' => $password,
                 'password_confirmation' => $password,
