@@ -1,8 +1,8 @@
 <?php
 return [
     "account_created" => [
-        "message" => "successful",
-        "title" => "Your account has been created successfully"
+        "message" => "Your account has been created successfully",
+        "title" => "Successful"
     ],
     "email_not_verified" => [
         "message" => "Click on this message to send a confirmation email again",
@@ -11,5 +11,9 @@ return [
     "language_updated" => [
         "message" => "The language of the webshop has been changed to :language.",
         "title" => "Language changed"
+    ],
+    "profile_updated" => [
+        "message" => "Your profile has been successfully updated",
+        "title" => "successful"
     ]
 ];

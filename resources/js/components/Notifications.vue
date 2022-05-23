@@ -4,7 +4,7 @@
     <div aria-live="assertive" class="z-[1005] fixed inset-0 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start">
         <div class="z-[1005] w-full flex flex-col items-center space-y-4 sm:items-end">
             <!-- Notification panel, dynamically insert this into the live region when it needs to be displayed -->
-            <NotificationCard v-for="message in messages" :title="message.title" :message="message.message" :type="message.type"/>
+            <NotificationCard v-for="message in messages" :notification="message"/>
         </div>
     </div>
 </template>
