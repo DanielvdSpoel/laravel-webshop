@@ -1,6 +1,9 @@
 <?php
 return [
-    "helpers" => ["select_all" => "Selecteer alle beschikbare opties"],
+    "helpers" => [
+        "password" => "Een wachtwoord moet minimaal 8 tekens, een hoofdletter en een kleine letter bevatten.",
+        "select_all" => "Selecteer alle beschikbare opties"
+    ],
     "labels" => [
         "brand" => "Merk",
         "children_categories" => "Subcategorieën",
@@ -17,6 +20,7 @@ return [
         "objects" => "Objecten",
         "parent_category" => "Bovenliggende categorie",
         "password" => "Wachtwoord",
+        "password_confirmation" => "Bevestig wachtwoord",
         "permissions" => [
             "create" => "Toevoegen",
             "delete" => "Verwijderen",
@@ -31,6 +35,7 @@ return [
         "permissions_title" => "Heeft toegang tot",
         "product_count" => "Aantal producten",
         "profile_picture" => "Profielfoto",
+        "remember_me" => "Onthoud me",
         "roles" => "Rollen",
         "select_all" => "Selecteer alles",
         "slug" => "Slug",

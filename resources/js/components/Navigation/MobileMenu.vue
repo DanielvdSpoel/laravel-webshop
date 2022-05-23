@@ -31,7 +31,7 @@
                                     <Tab as="template" v-for="category in categories"
                                          :key="category.name" v-slot="{ selected }">
                                         <button
-                                            :class="[selected ? 'text-indigo-600 border-indigo-600' : 'text-gray-900 border-transparent', 'flex-1 whitespace-nowrap py-4 px-1 border-b-2 text-base font-medium']">
+                                            :class="[selected ? 'text-primary-600 border-primary-600' : 'text-gray-900 border-transparent', 'flex-1 whitespace-nowrap py-4 px-1 border-b-2 text-base font-medium']">
                                             {{ category.name }}
                                         </button>
                                     </Tab>
@@ -73,7 +73,7 @@
                                         <div class="grid grid-cols-1 gap-y-10 gap-x-6">
                                             <div>
                                                 <p id="mobile-collection-heading" class="font-medium text-gray-900">
-                                                    {{ $t('store.navigation.collections') }}
+                                                    {{ $t('store.navigation.collections') }}}
                                                 </p>
                                                 <ul role="list" aria-labelledby="mobile-collection-heading"
                                                     class="mt-6 space-y-6">
@@ -88,7 +88,7 @@
 
                                             <div>
                                                 <p id="mobile-brand-heading" class="font-medium text-gray-900">
-                                                    {{ $t('store.navigation.brands') }}
+                                                    {{ $t('store.navigation.collections') }}}
                                                 </p>
                                                 <ul role="list" aria-labelledby="mobile-brand-heading"
                                                     class="mt-6 space-y-6">
@@ -117,10 +117,14 @@
 
                         <div class="border-t border-gray-200 py-6 px-4 space-y-6">
                             <div class="flow-root">
-                                <a href="#" class="-m-2 p-2 block font-medium text-gray-900">{{ $t('store.navigation.auth.register') }}</a>
+                                <Link :href="route('register')" class="-m-2 p-2 block font-medium text-gray-900">
+                                    {{ $t('store.navigation.auth.register') }}
+                                </Link>
                             </div>
                             <div class="flow-root">
-                                <a href="#" class="-m-2 p-2 block font-medium text-gray-900">{{ $t('store.navigation.auth.login') }}</a>
+                                <Link :href="route('register')" class="-m-2 p-2 block font-medium text-gray-900">
+                                    {{ $t('store.navigation.auth.register') }}
+                                </Link>
                             </div>
                         </div>
 
@@ -149,8 +153,10 @@ import {
     TransitionChild,
     TransitionRoot,
 } from '@headlessui/vue'
-import {MenuIcon, SearchIcon, ShoppingCartIcon, UserIcon, XIcon} from '@heroicons/vue/outline'
+import {XIcon} from '@heroicons/vue/outline'
 import CurrencySelector from "./CurrencySelector";
+import {Link} from '@inertiajs/inertia-vue3'
+
 </script>
 
 <script>

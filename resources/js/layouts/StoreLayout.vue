@@ -6,6 +6,9 @@
 
         <header class="relative z-10">
             <nav aria-label="Top">
+
+                <EmailVerificationNotification v-if="hasVerifiedEmail !== null && !hasVerifiedEmail"/>
+
                 <!-- Top navigation -->
                 <TopNavigation/>
 
@@ -31,9 +34,9 @@
                                 <p class="mt-2 text-sm text-gray-500">The latest news, articles, and resources, sent to your inbox weekly.</p>
                                 <form class="mt-4 sm:mt-6 sm:flex">
                                     <label for="email-address" class="sr-only">Email address</label>
-                                    <input id="email-address" type="text" autocomplete="email" required="" class="appearance-none min-w-0 w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-4 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" />
+                                    <input id="email-address" type="text" autocomplete="email" required="" class="appearance-none min-w-0 w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-4 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500" />
                                     <div class="mt-3 sm:flex-shrink-0 sm:mt-0 sm:ml-4">
-                                        <button type="submit" class="w-full bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-indigo-500">Sign up</button>
+                                        <button type="submit" class="w-full bg-primary-600 border border-transparent rounded-md shadow-sm py-2 px-4 flex items-center justify-center text-base font-medium text-white hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-primary-500">Sign up</button>
                                     </div>
                                 </form>
                             </div>
@@ -42,7 +45,7 @@
                         <div class="mt-6 relative py-12 px-6 flex items-center sm:py-16 sm:px-10 lg:mt-0">
                             <div class="absolute inset-0 rounded-lg overflow-hidden">
                                 <img src="https://tailwindui.com/img/ecommerce-images/footer-02-exclusive-sale.jpg" alt="" class="w-full h-full filter saturate-0 object-center object-cover" />
-                                <div class="absolute inset-0 bg-indigo-600 bg-opacity-90" />
+                                <div class="absolute inset-0 bg-primary-600 bg-opacity-90" />
                             </div>
                             <div class="relative max-w-sm mx-auto text-center">
                                 <h3 class="text-2xl font-extrabold tracking-tight text-white">Get early access</h3>
@@ -76,11 +79,12 @@
 </template>
 
 <script setup>
-import TopNavigation from "../components/navigation/TopNavigation";
-import Navbar from "../components/navigation/Navbar";
+import TopNavigation from "../components/Navigation/TopNavigation";
+import Navbar from "../components/Navigation/Navbar";
 import LanguageSelector from "../components/LanguageSelector";
 import Notifications from "../components/Notifications";
-import MobileMenu from "../components/navigation/MobileMenu";
+import MobileMenu from "../components/Navigation/MobileMenu";
+import EmailVerificationNotification from "../components/Navigation/EmailVerificationNotification";
 </script>
 
 <script>
@@ -92,6 +96,9 @@ export default {
         }
     },
     computed: {
+        hasVerifiedEmail() {
+            return this.$page.props.auth.has_verified_email
+        },
         brandName() {
             return this.$page.props.brand_name
         },

@@ -102,7 +102,7 @@
 
                     <div class="flex-1 flex items-center justify-end">
                         <div class="flex items-center lg:ml-8">
-                            <div class="flex space-x-8">
+                            <div class="flex space-x-8" :class="user ? 'mt-4' : ''">
                                 <div class="hidden lg:flex">
                                     <a href="#" class="-m-2 p-2 text-gray-400 hover:text-gray-500">
                                         <span class="sr-only">Search</span>
@@ -110,12 +110,19 @@
                                     </a>
                                 </div>
 
-                                <div class="flex">
-                                    <a href="#" class="-m-2 p-2 text-gray-400 hover:text-gray-500">
-                                        <span class="sr-only">Account</span>
-                                        <UserIcon class="w-6 h-6" aria-hidden="true" />
-                                    </a>
+                                <div v-if="user">
+                                    <ProfileButton>
+                                        <MenuButton class="flex flex-1 items-center justify-end space-x-2">
+                                            <div class="flex">
+                                                <a href="#" class="-m-2 p-2 text-gray-400 hover:text-gray-500">
+                                                    <span class="sr-only">Account</span>
+                                                    <UserIcon class="w-6 h-6" aria-hidden="true" />
+                                                </a>
+                                            </div>
+                                        </MenuButton>
+                                    </ProfileButton>
                                 </div>
+
                             </div>
 
                             <span class="mx-4 h-6 w-px bg-gray-200 lg:mx-6" aria-hidden="true" />
@@ -138,8 +145,8 @@
 
 <script>
 import { MenuIcon, SearchIcon, ShoppingCartIcon, UserIcon, XIcon } from '@heroicons/vue/outline'
-import {Popover, PopoverButton, PopoverGroup, PopoverPanel} from "@headlessui/vue";
-
+import {Popover, PopoverButton, PopoverGroup, PopoverPanel, MenuButton} from "@headlessui/vue";
+import ProfileButton from "./ProfileButton";
 
 export default {
     name: "Navbar",
@@ -153,11 +160,16 @@ export default {
         PopoverButton,
         PopoverGroup,
         PopoverPanel,
+        MenuButton,
+        ProfileButton
     },
     computed: {
         categories() {
             return this.$page.props.categories ?? []
-        }
+        },
+        user() {
+            return this.$page.props.auth.user
+        },
     }
 }
 </script>

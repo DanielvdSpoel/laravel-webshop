@@ -1,6 +1,9 @@
 <?php
 return [
-    "helpers" => ["select_all" => "Select all available options"],
+    "helpers" => [
+        "password" => "A password must contain at least 8 characters, a capital letter and a small letter.",
+        "select_all" => "Select all available options"
+    ],
     "labels" => [
         "brand" => "Brand",
         "children_categories" => "Subcategories",
@@ -17,6 +20,7 @@ return [
         "objects" => "Objects",
         "parent_category" => "Top category",
         "password" => "Password",
+        "password_confirmation" => "Confirm password",
         "permissions" => [
             "create" => "add",
             "delete" => "Remove",
@@ -31,6 +35,7 @@ return [
         "permissions_title" => "Has access to",
         "product_count" => "Number of products",
         "profile_picture" => "Profile photo",
+        "remember_me" => "Remember me",
         "roles" => "Roles",
         "select_all" => "Select all",
         "slug" => "Slug",

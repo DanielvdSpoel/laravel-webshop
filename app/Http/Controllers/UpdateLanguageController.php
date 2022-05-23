@@ -23,8 +23,8 @@ class UpdateLanguageController extends Controller
         session()->put('locale', $data['language']);
 
         NotificationSupport::sendSuccessNotification(
-            __('notifications.language-updated.title'),
-            __('notifications.language-updated.message', ['language' => config('webshop.available_languages.' . $data['language'])])
+            __('notifications.language_updated.title'),
+            __('notifications.language_updated.message', ['language' => config('webshop.available_languages.' . $data['language'])])
         );
         return redirect()->back();
     }

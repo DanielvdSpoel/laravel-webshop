@@ -46,7 +46,15 @@ class HandleInertiaRequests extends Middleware
             'translations' => $translationSupport->getTranslationStrings(),
             'current_language' =>session()->get('locale', app()->getLocale()),
             'available_currencies' => config('webshop.available_currencies'),
-            'available_languages' => config('webshop.available_languages')
+            'available_languages' => config('webshop.available_languages'),
+            'auth' => [
+                'user' => fn () => $request->user()
+                    ? $request->user()
+                    : null,
+                'has_verified_email' => fn () => $request->user()
+                    ? $request->user()->hasVerifiedEmail()
+                    : null,
+            ],
         ]);
     }
 }

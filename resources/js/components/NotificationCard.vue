@@ -16,7 +16,7 @@
                         </p>
                     </div>
                     <div class="ml-4 flex-shrink-0 flex">
-                        <button @click="show = false" class="bg-white rounded-md inline-flex text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        <button @click="show = false" class="bg-white rounded-md inline-flex text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
                             <span class="sr-only">Close</span>
                             <XIcon class="h-5 w-5" aria-hidden="true" />
                         </button>
@@ -47,6 +47,15 @@ export default {
     data() {
         return {
             show: true,
+        }
+    },
+    watch: {
+        message() {
+            this.show = true
+            const that = this
+            setTimeout(function(){
+                that.show = false
+            }, 4000);
         }
     },
     mounted() {
