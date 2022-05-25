@@ -1,5 +1,6 @@
 <?php
 return [
+    "confirm_password" => ["submit" => "Confirm", "title" => "Confirm password"],
     "failed" => "These credentials do not match our records.",
     "forgot_password" => [
         "submit" => "Send",
@@ -32,5 +33,6 @@ return [
         "success" => "Your password has been successfully changed!",
         "title" => "Change password"
     ],
-    "throttle" => "Too many login attempts. Please try again in :seconds seconds."
+    "throttle" => "Too many login attempts. Please try again in :seconds seconds.",
+    "two_factor_login" => ["title" => "Two-step verification"]
 ];

@@ -5,7 +5,9 @@ return [
         "select_all" => "Selecteer alle beschikbare opties"
     ],
     "labels" => [
+        "2fa_code" => "Tweestapsverificatie code",
         "brand" => "Merk",
+        "cancel" => "Annuleren",
         "children_categories" => "Subcategorieën",
         "connections" => "Connecties",
         "created_at" => "Aangemaakt",
@@ -44,6 +46,7 @@ return [
         "select_all" => "Selecteer alles",
         "slug" => "Slug",
         "support" => "Klantenservice",
+        "two_factor_confirm_code" => "Vul hier de code uit de tweeweg authenticatietoepassing op uw telefoon in",
         "updated_at" => "Laatst bijgewerkt",
         "visibility" => "Zichtbaarheid",
         "widgets" => "Widgets"

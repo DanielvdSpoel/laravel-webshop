@@ -5,7 +5,9 @@ return [
         "select_all" => "Select all available options"
     ],
     "labels" => [
+        "2fa_code" => "Two-step verification code",
         "brand" => "Brand",
+        "cancel" => "Cancel",
         "children_categories" => "Subcategories",
         "connections" => "Connections",
         "created_at" => "Created",
@@ -44,6 +46,7 @@ return [
         "select_all" => "Select all",
         "slug" => "Slug",
         "support" => "Customer service",
+        "two_factor_confirm_code" => "Enter the code from the two-way authentication application on your phone here",
         "updated_at" => "Last updated",
         "visibility" => "Visibility",
         "widgets" => "Widgets"

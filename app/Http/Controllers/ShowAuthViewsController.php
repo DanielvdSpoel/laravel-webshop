@@ -27,4 +27,14 @@ class ShowAuthViewsController extends Controller
     {
         return Inertia::render('Auth/Password/ResetPassword');
     }
+
+    public function confirmPassword()
+    {
+        return Inertia::render('Auth/ConfirmPassword');
+    }
+
+    public function twoFactorLogin()
+    {
+        return Inertia::render('Auth/TwoFactorLogin');
+    }
 }

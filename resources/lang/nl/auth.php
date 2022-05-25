@@ -1,5 +1,6 @@
 <?php
 return [
+    "confirm_password" => ["submit" => "Bevestigen", "title" => "Wachtwoord bevestigen"],
     "failed" => "Deze combinatie van e-mailadres en wachtwoord is niet geldig.",
     "forgot_password" => [
         "submit" => "Versturen",
@@ -32,5 +33,6 @@ return [
         "success" => "Je wachtwoord is succesvol aangepast!",
         "title" => "Wachtwoord aanpassen"
     ],
-    "throttle" => "Te veel mislukte aanmeldpogingen. Probeer het over nog eens over :seconds seconden."
+    "throttle" => "Te veel mislukte aanmeldpogingen. Probeer het over nog eens over :seconds seconden.",
+    "two_factor_login" => ["title" => "Tweestapsverificatie"]
 ];

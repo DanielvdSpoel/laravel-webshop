@@ -14,7 +14,7 @@
                         </div>
                         <div class="py-1">
                             <MenuItem v-slot="{ active }">
-                                <Link href="" :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']">
+                                <Link :href="route('profile.account')" :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']">
                                     {{ $t('profile.menu.profile') }}
                                 </Link>
                             </MenuItem>

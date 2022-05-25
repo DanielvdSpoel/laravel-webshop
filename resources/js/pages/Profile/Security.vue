@@ -34,6 +34,7 @@
             </form>
 
         </div>
+        <TwoFactorAuthenticationCard :user="user"/>
     </ProfileLayout>
 </template>
 
@@ -41,9 +42,10 @@
 import ProfileLayout from "../../layouts/ProfileLayout";
 import InputField from "../../components/Fields/InputField";
 import PasswordField from "../../components/Fields/PasswordField";
+import TwoFactorAuthenticationCard from "../../components/Profile/TwoFactorAuthenticationCard";
 export default {
     name: "Account",
-    components: {PasswordField, InputField, ProfileLayout},
+    components: {TwoFactorAuthenticationCard,  PasswordField, InputField, ProfileLayout},
     props: {
         user: Object,
     },
