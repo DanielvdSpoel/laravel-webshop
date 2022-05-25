@@ -13,10 +13,17 @@ use Filament\Resources\Table;
 use Filament\Tables;
 use Filament\Tables\Columns\ImageColumn;
 use Illuminate\Support\Str;
-use PhpParser\Node\Stmt\Static_;
+use Filament\Resources\Concerns\Translatable;
 
 class BrandResource extends Resource
 {
+    use Translatable;
+
+    public static function getTranslatableLocales(): array
+    {
+        return array_keys(config('webshop.available_languages', ['en']));
+    }
+
     public array $permissions = ['view', 'create', 'update', 'delete', 'view_any', 'delete_any', 'export'];
 
     protected static ?string $model = Brand::class;
@@ -78,6 +85,7 @@ class BrandResource extends Resource
                         ->label(__('forms.labels.slug'))
                         ->disabled()
                         ->required()
+                        ->helperText(__('forms.helpers.slug'))
                         ->unique(Brand::class, 'slug', fn($record) => $record),
                 ]),
             FileUpload::make('logo')

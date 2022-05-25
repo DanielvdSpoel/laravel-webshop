@@ -17,9 +17,9 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Brand::class)->nullable()->constrained()->nullOnDelete();
-            $table->string('name')->unique();
+            $table->json('name');
             $table->string('slug')->unique();
-            $table->string('description')->nullable();
+            $table->json('description')->nullable();
             $table->timestamps();
         });
     }

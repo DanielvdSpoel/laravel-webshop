@@ -8,4 +8,7 @@ use Filament\Resources\Pages\ListRecords;
 class ListCategories extends ListRecords
 {
     protected static string $resource = CategoryResource::class;
+
+    use ListRecords\Concerns\Translatable;
+
 }

@@ -9,6 +9,9 @@ class CreateCategory extends CreateRecord
 {
     protected static string $resource = CategoryResource::class;
 
+    use CreateRecord\Concerns\Translatable;
+
+
     /*protected function afterCreate()
     {
         ray($this->form->getState()['children']);

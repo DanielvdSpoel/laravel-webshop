@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('brands', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
+            $table->json('name');
             $table->string('slug')->unique();
             $table->string('logo')->nullable();
-            $table->text('description')->nullable();
+            $table->json('description')->nullable();
             $table->boolean('is_visible')->default(true);
             $table->timestamps();
         });

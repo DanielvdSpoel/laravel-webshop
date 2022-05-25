@@ -2,7 +2,8 @@
 return [
     "helpers" => [
         "password" => "A password must contain at least 8 characters, a capital letter and a small letter.",
-        "select_all" => "Select all available options"
+        "select_all" => "Select all available options",
+        "slug" => "The slug is generated from the English name and is used in the url"
     ],
     "labels" => [
         "2fa_code" => "Two-step verification code",

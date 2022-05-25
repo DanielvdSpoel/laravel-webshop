@@ -2,7 +2,8 @@
 return [
     "helpers" => [
         "password" => "Een wachtwoord moet minimaal 8 tekens, een hoofdletter en een kleine letter bevatten.",
-        "select_all" => "Selecteer alle beschikbare opties"
+        "select_all" => "Selecteer alle beschikbare opties",
+        "slug" => "De slug word gegenereerd vanuit de Engelse naam en word gebruikt in de url"
     ],
     "labels" => [
         "2fa_code" => "Tweestapsverificatie code",

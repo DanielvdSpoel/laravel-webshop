@@ -10,6 +10,9 @@ class EditCategory extends EditRecord
 {
     protected static string $resource = CategoryResource::class;
 
+    use EditRecord\Concerns\Translatable;
+
+
     protected function afterSave()
     {
         /*foreach ($this->form->getState()['children'] as $child) {
