@@ -8,6 +8,7 @@ return [
     "labels" => [
         "2fa_code" => "Tweestapsverificatie code",
         "brand" => "Merk",
+        "button_text" => "Tekst op knop",
         "cancel" => "Annuleren",
         "children_categories" => "Subcategorieën",
         "connections" => "Connecties",
@@ -18,6 +19,7 @@ return [
         "first_name" => "Voornaam",
         "images" => "Afbeeldingen",
         "is_visible" => "Is zichtbaar voor klanten",
+        "language_key" => "Taal",
         "last_name" => "Achternaam",
         "logo" => "Logo",
         "name" => "Naam",
@@ -48,7 +50,9 @@ return [
         "slug" => "Slug",
         "support" => "Klantenservice",
         "two_factor_confirm_code" => "Vul hier de code uit de tweeweg authenticatietoepassing op uw telefoon in",
+        "type" => "Type",
         "updated_at" => "Laatst bijgewerkt",
+        "value" => "Waarde",
         "visibility" => "Zichtbaarheid",
         "widgets" => "Widgets"
     ],

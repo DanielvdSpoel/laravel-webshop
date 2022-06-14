@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/', [PageController::class, 'home'])->name('home');
 Route::patch('/update-language', UpdateLanguageController::class)->name('update-language');
 

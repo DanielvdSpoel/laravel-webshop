@@ -4,7 +4,8 @@ return [
     "categories" => ["label" => "Category", "label_plural" => "Categories"],
     "employees" => ["label" => "Collaborator", "label_plural" => "Employees"],
     "filters" => ["has_role" => "Has role:"],
-    "groups" => ["management" => "Management", "shop" => "Store"],
+    "groups" => ["content" => "Content", "management" => "Management", "shop" => "Store"],
+    "pages" => ["label" => "Page", "label_plural" => "Pages"],
     "products" => ["label" => "Product", "label_plural" => "Products"],
     "roles" => ["label" => "Role", "label_plural" => "Roles"]
 ];

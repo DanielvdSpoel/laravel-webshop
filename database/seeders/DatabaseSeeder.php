@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             Permissionseeder::class,
             CreateOwnerRoleSeeder::class,
             CreateOwnerSeeder::class,
+            PageTypeSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
     }

@@ -8,6 +8,7 @@ return [
     "labels" => [
         "2fa_code" => "Two-step verification code",
         "brand" => "Brand",
+        "button_text" => "Text on Button",
         "cancel" => "Cancel",
         "children_categories" => "Subcategories",
         "connections" => "Connections",
@@ -18,6 +19,7 @@ return [
         "first_name" => "First name",
         "images" => "Images",
         "is_visible" => "Is visible to customers",
+        "language_key" => "Language",
         "last_name" => "Last name",
         "logo" => "Logo",
         "name" => "Name",
@@ -48,7 +50,9 @@ return [
         "slug" => "Slug",
         "support" => "Customer service",
         "two_factor_confirm_code" => "Enter the code from the two-way authentication application on your phone here",
+        "type" => "Type",
         "updated_at" => "Last updated",
+        "value" => "Value",
         "visibility" => "Visibility",
         "widgets" => "Widgets"
     ],
