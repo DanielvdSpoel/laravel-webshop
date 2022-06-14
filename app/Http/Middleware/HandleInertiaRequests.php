@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Category;
 use App\Supports\TranslationSupport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -47,6 +48,8 @@ class HandleInertiaRequests extends Middleware
             'current_language' =>session()->get('locale', app()->getLocale()),
             'available_currencies' => config('webshop.available_currencies'),
             'available_languages' => config('webshop.available_languages'),
+            'categories' => Category::query()
+                ->whereNull('parent_id')->with('children')->get(),
             'auth' => [
                 'user' => fn () => $request->user()
                     ? $request->user()

@@ -18,7 +18,7 @@
                                 <Popover v-for="category in categories" :key="category.name" class="flex" v-slot="{ open }">
                                     <div class="relative flex">
                                         <PopoverButton :class="[open ? 'border-primary-600 text-primary-600' : 'border-transparent text-gray-700 hover:text-gray-800', 'relative z-10 flex items-center transition-colors ease-out duration-200 text-sm font-medium border-b-2 -mb-px pt-px']">
-                                            {{ category.name }}
+                                            {{ loadTranslationFromObject(category.name) }}
                                         </PopoverButton>
                                     </div>
 
@@ -32,12 +32,12 @@
                                                     <ul class="grid grid-cols-4 items-start gap-y-10 gap-x-8 pt-10 pb-12">
                                                         <li v-for="childCategory in category.children">
                                                             <p :id="`desktop-child-category-heading-${childCategory.id}`" class="font-medium text-gray-900">
-                                                                {{ childCategory.name }}
+                                                                {{ loadTranslationFromObject(childCategory.name) }}
                                                             </p>
                                                             <ul role="list" :aria-labelledby="`desktop-child-category-heading-${childCategory.id}`" class="mt-6 space-y-6 sm:mt-4 sm:space-y-4">
                                                                 <li v-for="item in childCategory.children" :key="item.name" class="flex">
                                                                     <a :href="item.href" class="hover:text-gray-800">
-                                                                        {{ item.name }}
+                                                                        {{ loadTranslationFromObject(item.name) }}
                                                                     </a>
                                                                 </li>
                                                             </ul>
@@ -147,7 +147,7 @@
 import { MenuIcon, SearchIcon, ShoppingCartIcon, UserIcon, XIcon } from '@heroicons/vue/outline'
 import {Popover, PopoverButton, PopoverGroup, PopoverPanel, MenuButton} from "@headlessui/vue";
 import ProfileButton from "./ProfileButton";
-
+import LoadTranslationFromObjectMixin from "../../mixins/LoadTranslationFromObjectMixin";
 export default {
     name: "Navbar",
     components: {
@@ -163,6 +163,7 @@ export default {
         MenuButton,
         ProfileButton
     },
+    mixins: [LoadTranslationFromObjectMixin],
     computed: {
         categories() {
             return this.$page.props.categories ?? []

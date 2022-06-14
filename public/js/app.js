@@ -26045,32 +26045,35 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @heroicons/vue/outline */ "./node_modules/@heroicons/vue/outline/esm/MenuIcon.js");
-/* harmony import */ var _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @heroicons/vue/outline */ "./node_modules/@heroicons/vue/outline/esm/SearchIcon.js");
-/* harmony import */ var _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @heroicons/vue/outline */ "./node_modules/@heroicons/vue/outline/esm/ShoppingCartIcon.js");
-/* harmony import */ var _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @heroicons/vue/outline */ "./node_modules/@heroicons/vue/outline/esm/UserIcon.js");
-/* harmony import */ var _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @heroicons/vue/outline */ "./node_modules/@heroicons/vue/outline/esm/XIcon.js");
-/* harmony import */ var _headlessui_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @headlessui/vue */ "./node_modules/@headlessui/vue/dist/components/popover/popover.js");
-/* harmony import */ var _headlessui_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @headlessui/vue */ "./node_modules/@headlessui/vue/dist/components/menu/menu.js");
+/* harmony import */ var _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @heroicons/vue/outline */ "./node_modules/@heroicons/vue/outline/esm/MenuIcon.js");
+/* harmony import */ var _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @heroicons/vue/outline */ "./node_modules/@heroicons/vue/outline/esm/SearchIcon.js");
+/* harmony import */ var _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @heroicons/vue/outline */ "./node_modules/@heroicons/vue/outline/esm/ShoppingCartIcon.js");
+/* harmony import */ var _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @heroicons/vue/outline */ "./node_modules/@heroicons/vue/outline/esm/UserIcon.js");
+/* harmony import */ var _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @heroicons/vue/outline */ "./node_modules/@heroicons/vue/outline/esm/XIcon.js");
+/* harmony import */ var _headlessui_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @headlessui/vue */ "./node_modules/@headlessui/vue/dist/components/popover/popover.js");
+/* harmony import */ var _headlessui_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @headlessui/vue */ "./node_modules/@headlessui/vue/dist/components/menu/menu.js");
 /* harmony import */ var _ProfileButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ProfileButton */ "./resources/js/components/Navigation/ProfileButton.vue");
+/* harmony import */ var _mixins_LoadTranslationFromObjectMixin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mixins/LoadTranslationFromObjectMixin */ "./resources/js/mixins/LoadTranslationFromObjectMixin.js");
+
 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Navbar",
   components: {
-    MenuIcon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_1__["default"],
-    SearchIcon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__["default"],
-    ShoppingCartIcon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_3__["default"],
-    UserIcon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_4__["default"],
-    XIcon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_5__["default"],
-    Popover: _headlessui_vue__WEBPACK_IMPORTED_MODULE_6__.Popover,
-    PopoverButton: _headlessui_vue__WEBPACK_IMPORTED_MODULE_6__.PopoverButton,
-    PopoverGroup: _headlessui_vue__WEBPACK_IMPORTED_MODULE_6__.PopoverGroup,
-    PopoverPanel: _headlessui_vue__WEBPACK_IMPORTED_MODULE_6__.PopoverPanel,
-    MenuButton: _headlessui_vue__WEBPACK_IMPORTED_MODULE_7__.MenuButton,
+    MenuIcon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__["default"],
+    SearchIcon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_3__["default"],
+    ShoppingCartIcon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_4__["default"],
+    UserIcon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_5__["default"],
+    XIcon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_6__["default"],
+    Popover: _headlessui_vue__WEBPACK_IMPORTED_MODULE_7__.Popover,
+    PopoverButton: _headlessui_vue__WEBPACK_IMPORTED_MODULE_7__.PopoverButton,
+    PopoverGroup: _headlessui_vue__WEBPACK_IMPORTED_MODULE_7__.PopoverGroup,
+    PopoverPanel: _headlessui_vue__WEBPACK_IMPORTED_MODULE_7__.PopoverPanel,
+    MenuButton: _headlessui_vue__WEBPACK_IMPORTED_MODULE_8__.MenuButton,
     ProfileButton: _ProfileButton__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
+  mixins: [_mixins_LoadTranslationFromObjectMixin__WEBPACK_IMPORTED_MODULE_1__["default"]],
   computed: {
     categories: function categories() {
       var _this$$page$props$cat;
@@ -28957,7 +28960,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
               "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([open ? 'border-primary-600 text-primary-600' : 'border-transparent text-gray-700 hover:text-gray-800', 'relative z-10 flex items-center transition-colors ease-out duration-200 text-sm font-medium border-b-2 -mb-px pt-px'])
             }, {
               "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(category.name), 1
+                return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.loadTranslationFromObject(category.name)), 1
                 /* TEXT */
                 )];
               }),
@@ -28983,7 +28986,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                       return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
                         id: "desktop-child-category-heading-".concat(childCategory.id),
                         "class": "font-medium text-gray-900"
-                      }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(childCategory.name), 9
+                      }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.loadTranslationFromObject(childCategory.name)), 9
                       /* TEXT, PROPS */
                       , _hoisted_13), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", {
                         role: "list",
@@ -28996,7 +28999,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
                           href: item.href,
                           "class": "hover:text-gray-800"
-                        }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.name), 9
+                        }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.loadTranslationFromObject(item.name)), 9
                         /* TEXT, PROPS */
                         , _hoisted_15)]);
                       }), 128
