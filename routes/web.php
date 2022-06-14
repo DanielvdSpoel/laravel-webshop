@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', [PageController::class, 'home'])->name('home');
+//Route::get('/', [PageController::class, 'home'])->name('home');
 Route::patch('/update-language', UpdateLanguageController::class)->name('update-language');
 
 Route::middleware('guest')->group(function () {
@@ -38,6 +38,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/security', 'security')->name('security');
         Route::redirect('/', '/profile/account');
         Route::patch('/update', 'update')->name('update');
-
     });
 });
+
+Route::get('/{page:slug}', [PageController::class, 'renderPage'])->name('render-page');

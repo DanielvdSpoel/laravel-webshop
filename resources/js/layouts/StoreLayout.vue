@@ -18,7 +18,7 @@
         </header>
 
         <main class="mb-auto bg-gray-100">
-            <div class="m-5">
+            <div :class="{'m-5': addMargin}">
                 <slot/>
             </div>
         </main>
@@ -42,6 +42,12 @@ import Footer from "../components/Navigation/Footer";
 <script>
 export default {
     name: "StoreLayout",
+    props: {
+        addMargin: {
+            type: Boolean,
+            default: true,
+        }
+    },
     data() {
         return {
             mobileMenuOpen: false,

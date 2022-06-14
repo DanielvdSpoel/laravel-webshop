@@ -54,7 +54,12 @@ return [
         "updated_at" => "Laatst bijgewerkt",
         "value" => "Waarde",
         "visibility" => "Zichtbaarheid",
-        "widgets" => "Widgets"
+        "widgets" => "Widgets",
+        "button_url" => "Knop url",
+        "language" => "Taal",
+        "background" => "Achtergrond",
+        "section_description" => "Sectie beschrijving",
+        "section_title" => "Sectie titel"
     ],
     "sections" => ["permissions" => "Permissies"]
 ];

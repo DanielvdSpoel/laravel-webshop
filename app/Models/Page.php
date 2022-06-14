@@ -20,6 +20,7 @@ class Page extends Model
      */
     protected $fillable = [
         'name',
+        'slug',
         'content',
         'is_visible',
     ];
@@ -28,4 +29,13 @@ class Page extends Model
     {
         return $this->belongsTo(PageType::class, 'page_type_id');
     }
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'content' => 'array',
+    ];
 }

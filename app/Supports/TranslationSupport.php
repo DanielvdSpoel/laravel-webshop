@@ -8,7 +8,7 @@ use App;
 
 class TranslationSupport
 {
-    private array $availableLocales = ['en', 'nl'];
+    static array $availableLocales = ['en', 'nl'];
 
 
     public function getTranslationStrings()
@@ -86,7 +86,7 @@ class TranslationSupport
     {
         $data = [];
         $dir = new DirectoryIterator($path);
-        $lastLocale = last($this->availableLocales);
+        $lastLocale = last(self::$availableLocales);
         foreach ($dir as $fileinfo) {
             // Do not mess with dotfiles at all.
             if ($fileinfo->isDot()) {

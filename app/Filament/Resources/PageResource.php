@@ -7,6 +7,8 @@ use App\Filament\Resources\PageResource\RelationManagers;
 use App\Models\Page;
 use App\Models\PageType;
 use App\Models\Product;
+use App\Supports\PageBlocksSupport;
+use App\Supports\TranslationSupport;
 use Filament\Forms;
 use Filament\Forms\Components\BelongsToSelect;
 use Filament\Forms\Components\Builder;
@@ -89,6 +91,26 @@ class PageResource extends Resource
                         Card::make()
                             ->schema([
                                 Builder::make('content')
+                                    ->blocks([
+                                        Builder\Block::make('heading_with_background')
+                                            ->label(__('blocks.full-width_with_background'))
+                                            ->icon('heroicon-o-photograph')
+                                            ->schema([
+                                                TextInput::make('button_url')
+                                                    ->label(__('forms.labels.button_url'))
+                                                    ->required(),
+                                                PageBlocksSupport::getTranslationField('button_text'),
+                                                PageBlocksSupport::getTranslationField('section_title'),
+                                                PageBlocksSupport::getTranslationField('section_description'),
+                                                FileUpload::make('background')
+                                                    ->label(__('forms.labels.background'))
+                                                    ->image()
+
+
+                                            ]),
+                                    ])
+
+
                             ])
                     ])->columnSpan([
                         'sm' => 2,
@@ -98,10 +120,10 @@ class PageResource extends Resource
                         Card::make()
                             ->schema([
                                 Placeholder::make(__('forms.labels.visibility')),
-                                        Forms\Components\Toggle::make('is_visible')
-                                            ->label(__('forms.labels.is_visible'))
-                                            ->default(true)
-                                            ->required(),
+                                Forms\Components\Toggle::make('is_visible')
+                                    ->label(__('forms.labels.is_visible'))
+                                    ->default(true)
+                                    ->required(),
                             ])->columnSpan(1),
                         Card::make()
                             ->schema([
@@ -128,19 +150,19 @@ class PageResource extends Resource
                 'sm' => 3,
                 'lg' => null,
             ]);
-            /*->schema([
-                Forms\Components\TextInput::make('name')
-                    ->required(),
-                Forms\Components\TextInput::make('slug')
-                    ->required()
-                    ->maxLength(191),
-                Forms\Components\TextInput::make('content'),
-                Forms\Components\Toggle::make('is_visible')
-                    ->required(),
-                Forms\Components\Toggle::make('can_be_deleted')
-                    ->required(),
-                Forms\Components\TextInput::make('page_type_id'),
-            ]);*/
+        /*->schema([
+            Forms\Components\TextInput::make('name')
+                ->required(),
+            Forms\Components\TextInput::make('slug')
+                ->required()
+                ->maxLength(191),
+            Forms\Components\TextInput::make('content'),
+            Forms\Components\Toggle::make('is_visible')
+                ->required(),
+            Forms\Components\Toggle::make('can_be_deleted')
+                ->required(),
+            Forms\Components\TextInput::make('page_type_id'),
+        ]);*/
     }
 
     public static function table(Table $table): Table
