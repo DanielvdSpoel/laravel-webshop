@@ -86,8 +86,11 @@ class RoleResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')->searchable()->label(__('forms.labels.name')),
             ])
-            ->filters([
-                //
+            ->actions([
+                Tables\Actions\EditAction::make(),
+            ])
+            ->bulkActions([
+                Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
 

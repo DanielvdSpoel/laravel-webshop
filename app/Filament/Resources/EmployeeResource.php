@@ -87,6 +87,13 @@ class EmployeeResource extends Resource
             ->filters([
                 SelectFilter::make('role')->relationship('roles', 'name')
                     ->label(__('resources.filters.has_role')),
+            ])
+            ->actions([
+                Tables\Actions\ViewAction::make(),
+                Tables\Actions\EditAction::make(),
+            ])
+            ->bulkActions([
+                Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
 

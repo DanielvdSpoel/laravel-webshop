@@ -175,6 +175,13 @@ class PageResource extends Resource
             ])
             ->filters([
                 SelectFilter::make('type')->relationship('type', 'name')->label(__('forms.labels.type')),
+            ])
+            ->actions([
+                Tables\Actions\ViewAction::make(),
+                Tables\Actions\EditAction::make(),
+            ])
+            ->bulkActions([
+                Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
 

@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Translatable\HasTranslations;
+use Staudenmeir\EloquentHasManyDeep\HasRelationships;
 
 class Category extends Model
 {
-    use HasFactory, HasTranslations;
+    use HasFactory, HasTranslations, HasRelationships;
 
     public array $translatable = ['name'];
 
@@ -40,6 +41,21 @@ class Category extends Model
     {
         return $this->belongsToMany(Product::class);
     }
+
+    /*public function brands()
+    {
+        $brands = collect([]);
+        $this->products()->each(function (Product $product) use ($brands) {
+           $brands->push($product->brand());
+        });
+
+        return $brands->unique('id');
+
+
+        return $this->hasManyDeep(Brand::class, ['category_product', Product::class]);
+
+        return $this->hasManyDeep(Brand::class, [Product::class]);
+    }*/
 
 
 }

@@ -4,6 +4,9 @@ namespace App\Filament\Resources\CategoryResource\Pages;
 
 use App\Filament\Resources\CategoryResource;
 use App\Models\Category;
+use Filament\Pages\Actions\DeleteAction;
+use Filament\Pages\Actions\LocaleSwitcher;
+use Filament\Pages\Actions\ViewAction;
 use Filament\Resources\Pages\EditRecord;
 
 class EditCategory extends EditRecord
@@ -12,14 +15,18 @@ class EditCategory extends EditRecord
 
     use EditRecord\Concerns\Translatable;
 
-
-    protected function afterSave()
+    public static function getTranslatableLocales(): array
     {
-        /*foreach ($this->form->getState()['children'] as $child) {
-            $this->record->children()->save(Category::find($child));
-        }*/
+        return array_keys(config('webshop.available_languages', ['en']));
+    }
 
-        //$this->record->syncPermissions($permissions->keys());
+    protected function getActions(): array
+    {
+        return [
+            ViewAction::make(),
+            DeleteAction::make(),
+            LocaleSwitcher::make(),
+        ];
     }
 
 }

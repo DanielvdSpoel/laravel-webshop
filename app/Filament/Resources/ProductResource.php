@@ -155,6 +155,13 @@ class ProductResource extends Resource
             ])
             ->filters([
                 SelectFilter::make('brand')->relationship('brand', 'name')->label(__('forms.labels.brand')),
+            ])
+            ->actions([
+                Tables\Actions\ViewAction::make(),
+                Tables\Actions\EditAction::make(),
+            ])
+            ->bulkActions([
+                Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
 

@@ -144,6 +144,13 @@ class CategoryResource extends Resource
             ])
             ->filters([
                 SelectFilter::make('parent_id')->relationship('parent', 'name')->label(__('forms.labels.parent_category')),
+            ])
+            ->actions([
+                Tables\Actions\ViewAction::make(),
+                Tables\Actions\EditAction::make(),
+            ])
+            ->bulkActions([
+                Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
 
