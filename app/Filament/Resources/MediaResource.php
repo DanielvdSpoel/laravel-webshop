@@ -4,10 +4,23 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\MediaResource\Pages;
 use App\Filament\Resources\MediaResource\RelationManagers;
+use App\Models\Page;
+use App\Models\Product;
+use App\Supports\FilamentFormSupport;
+use App\Supports\PageBlocksSupport;
+use Filament\Forms\Components\BelongsToSelect;
+use Filament\Forms\Components\Builder;
+use Filament\Forms\Components\Card;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Group;
+use Filament\Forms\Components\Placeholder;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Illuminate\Support\Str;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class MediaResource extends Resource
@@ -16,13 +29,56 @@ class MediaResource extends Resource
 
     protected static ?string $model = Media::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-photograph';
+
+    public static function getNavigationGroup(): string
+    {
+        return __('resources.groups.content');
+    }
+
+    public static function getLabel(): string
+    {
+        return __('resources.media.label');
+    }
+
+    public static function getPluralLabel(): string
+    {
+        return __('resources.media.label_plural');
+    }
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                //
+                Group::make()
+                    ->schema([
+                        Section::make(__('forms.labels.image'))
+                            ->schema([
+                                FileUpload::make('image')
+                                    ->disableLabel()
+                                    ->panelAspectRatio('2:1')
+                            ]),
+                    ])->columnSpan([
+                        'sm' => 2,
+                    ]),
+
+                //Card::make()
+
+                Group::make()
+                    ->schema([
+                        Section::make(__('forms.labels.meta'))
+                            ->schema([
+                                TextInput::make('name')
+                                    ->label(__('forms.labels.name')),
+                                TextInput::make('alt')
+                                    ->label(__('forms.labels.alt'))
+                                    ->helperText(__('forms.helpers.alt')),
+                            ]),
+                        FilamentFormSupport::getTimestampCard()->visibleOn(Pages\EditMedia::class)
+                    ])->columnSpan(1),
+            ])->columns([
+                'sm' => 3,
+                'lg' => null,
             ]);
     }
 

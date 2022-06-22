@@ -7,5 +7,7 @@ return [
     "groups" => ["content" => "Content", "management" => "Beheer", "shop" => "Winkel"],
     "pages" => ["label" => "Pagina", "label_plural" => "Pagina's"],
     "products" => ["label" => "Product", "label_plural" => "Producten"],
-    "roles" => ["label" => "Rol", "label_plural" => "Rollen"]
+    "roles" => ["label" => "Rol", "label_plural" => "Rollen"],
+    "media" => ["label" => "Media", "label_plural" => "Media"],
+
 ];
