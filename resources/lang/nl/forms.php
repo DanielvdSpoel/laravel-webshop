@@ -3,8 +3,7 @@ return [
     "helpers" => [
         "password" => "Een wachtwoord moet minimaal 8 tekens, een hoofdletter en een kleine letter bevatten.",
         "select_all" => "Selecteer alle beschikbare opties",
-        "slug" => "De slug word gegenereerd vanuit de Engelse naam en word gebruikt in de url",
-        "alt" => '<span class="block -mt-1 text-xs"><a href="https://www.w3.org/WAI/tutorials/images/decision-tree" target="_blank" rel="noopener" class="underline text-primary-500 hover:text-primary-600 focus:text-primary-600">Leer hoe je het doel van de afbeelding kunt beschrijven</a>. Laat leeg als de afbeelding puur decoratief is.</span>'
+        "slug" => "De slug word gegenereerd vanuit de Engelse naam en word gebruikt in de url"
     ],
     "labels" => [
         "2fa_code" => "Tweestapsverificatie code",
@@ -60,10 +59,7 @@ return [
         "language" => "Taal",
         "background" => "Achtergrond",
         "section_description" => "Sectie beschrijving",
-        "section_title" => "Sectie titel",
-        "upload" => "Uploaden",
-        "image" => "Afbeelding",
-        "meta" => "Meta-data"
+        "section_title" => "Sectie titel"
     ],
     "sections" => ["permissions" => "Permissies"]
 ];
