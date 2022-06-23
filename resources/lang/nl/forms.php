@@ -3,7 +3,8 @@ return [
     "helpers" => [
         "password" => "Een wachtwoord moet minimaal 8 tekens, een hoofdletter en een kleine letter bevatten.",
         "select_all" => "Selecteer alle beschikbare opties",
-        "slug" => "De slug word gegenereerd vanuit de Engelse naam en word gebruikt in de url"
+        "slug" => "De slug word gegenereerd vanuit de Engelse naam en word gebruikt in de url",
+        "source" => "Deze redirect overschrijft elke andere pagina die de zelfde url heeft"
     ],
     "labels" => [
         "2fa_code" => "Tweestapsverificatie code",
@@ -59,7 +60,34 @@ return [
         "language" => "Taal",
         "background" => "Achtergrond",
         "section_description" => "Sectie beschrijving",
-        "section_title" => "Sectie titel"
+        "section_title" => "Sectie titel",
+        "source" => "Bron",
+        "status_code" => "Status code",
+        "target_type" => "Doeltype",
+        "destination" => "Doel",
+        "page" => "Pagina",
+        "category" => "Categorie",
+        "product" => "Product",
+
     ],
-    "sections" => ["permissions" => "Permissies"]
+    "sections" => ["permissions" => "Permissies"],
+    "options" => [
+        "status_code" => [
+            "301" => "301 (Permanente verwijzing)",
+            "302" => "302 (Tijdelijke verwijzing)",
+            "303" => "303 (Verwijzing doorverwijzen)",
+            "307" => "307 (Tijdelijke verwijzing)",
+            "308" => "308 (Permanente verwijzing)"
+        ],
+        "target_type" => [
+            "page" => "Pagina",
+            "url" => "Url",
+            "product" => "Product",
+            "category" => "Categorie",
+        ],
+    ],
+    "placeholders" => [
+        "destination" => "/de-oude-url",
+        "source" => "/de-nieuwe-url",
+    ]
 ];

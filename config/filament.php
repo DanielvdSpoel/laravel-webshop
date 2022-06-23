@@ -257,7 +257,7 @@ return [
 
     'middleware' => [
         'auth' => [
-            Authenticate::class,
+            \App\Http\Middleware\Authenticate::class,
         ],
         'base' => [
             EncryptCookies::class,

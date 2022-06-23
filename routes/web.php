@@ -41,4 +41,4 @@ Route::middleware('auth')->group(function () {
     });
 });
 
-Route::get('/{page:slug}', [PageController::class, 'renderPage'])->name('render-page');
+//Route::fallback([PageController::class, 'handleFallback']);

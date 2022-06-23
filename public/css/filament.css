@@ -5801,6 +5801,11 @@ select{
   color: rgb(209 213 219 / var(--tw-text-opacity));
 }
 
+.dark .dark\:focus\:border-primary-600:focus{
+  --tw-border-opacity: 1;
+  border-color: rgb(79 70 229 / var(--tw-border-opacity));
+}
+
 .dark .dark\:focus\:border-primary-400:focus{
   --tw-border-opacity: 1;
   border-color: rgb(129 140 248 / var(--tw-border-opacity));
