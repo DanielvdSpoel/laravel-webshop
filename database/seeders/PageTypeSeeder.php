@@ -16,25 +16,16 @@ class PageTypeSeeder extends Seeder
     public function run()
     {
         $type =  PageType::firstOrCreate([
-            'name' => 'Basic page'
-        ]);
-        $type->pages()->firstOrCreate([
-            'name' => [
-                'en' => 'Home',
-                'nl' => 'Home',
-                'de' => 'Home',
-            ],
-            'slug' => '',
-            'can_be_deleted' => false,
+            'name' => 'basic_page'
         ]);
         PageType::firstOrCreate([
-            'name' => 'Product page'
+            'name' => 'product_page'
         ]);
         PageType::firstOrCreate([
-            'name' => 'Brand page',
+            'name' => 'brand_page',
         ]);
         PageType::firstOrCreate([
-            'name' => 'Category page',
+            'name' => 'category_page',
         ]);
     }
 }

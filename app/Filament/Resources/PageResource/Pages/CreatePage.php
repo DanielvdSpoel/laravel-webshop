@@ -12,11 +12,6 @@ class CreatePage extends CreateRecord
 
     use CreateRecord\Concerns\Translatable;
 
-    public static function getTranslatableLocales(): array
-    {
-        return array_keys(config('webshop.available_languages', ['en']));
-    }
-
     protected function getActions(): array
     {
         return [

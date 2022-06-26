@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\RedirectResource\Pages;
 use App\Filament\Resources\RedirectResource\RelationManagers;
+use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Page;
 use App\Models\Product;
@@ -92,6 +93,9 @@ class RedirectResource extends Resource
                                                         case Product::class:
                                                             $component->state('product');
                                                             break;
+                                                        case Brand::class:
+                                                            $component->state('brand');
+                                                            break;
                                                         case Page::class:
                                                             $component->state('page');
                                                             break;
@@ -104,6 +108,7 @@ class RedirectResource extends Resource
                                                 'product' => __('forms.options.target_type.product'),
                                                 'category' => __('forms.options.target_type.category'),
                                                 'url' => __('forms.options.target_type.url'),
+                                                'brand' => __('forms.options.target_type.brand'),
                                             ])
                                             ->afterStateUpdated(function (Closure $set) {
                                                 $set('redirectable_type', null);
@@ -172,6 +177,25 @@ class RedirectResource extends Resource
                                                 }
                                             })
                                             ->label(__('forms.labels.product'))
+                                            ->searchable()
+                                            ->required()
+                                            ->preload(),
+
+                                        Select::make('brand')
+                                            ->options(Brand::all()->pluck('name', 'id'))
+                                            ->hidden(function (Closure $get) {
+                                                return $get('target_type') !== 'brand';
+                                            })
+                                            ->afterStateUpdated(function (Closure $set, $state) {
+                                                $set('redirectable_type', Product::class);
+                                                $set('redirectable_id', $state);
+                                            })
+                                            ->afterStateHydrated(function (Select $component, $state, ?Model $record) {
+                                                if ($record && $record->redirectable_type === Brand::class) {
+                                                    $component->state($record->redirectable_id);
+                                                }
+                                            })
+                                            ->label(__('forms.labels.brand'))
                                             ->searchable()
                                             ->required()
                                             ->preload(),

@@ -13,6 +13,6 @@ return [
     |
     */
 
-    'default_locales' => [config('app.locale')],
+    'default_locales' => array_keys(config('webshop.available_languages', ['en'])),
 
 ];

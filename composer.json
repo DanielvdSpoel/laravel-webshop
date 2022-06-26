@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "bezhansalleh/filament-language-switch": "^0.0.0",
         "doctrine/dbal": "^3.3",
         "filament/filament": "^2.0",
         "filament/spatie-laravel-media-library-plugin": "^2.12",
