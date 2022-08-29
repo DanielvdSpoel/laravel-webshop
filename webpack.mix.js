@@ -17,4 +17,4 @@ mix.js('resources/js/app.js', 'public/js').vue()
     ]);
 mix.postCss('resources/css/filament.css', 'public/css', [
     require('tailwindcss'),
-])
+]);

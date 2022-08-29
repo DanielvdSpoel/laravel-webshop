@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\RedirectResource\Pages;
 use App\Filament\Resources\RedirectResource\RelationManagers;
+use App\Forms\Components\MediaPicker;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Page;
@@ -63,6 +64,8 @@ class RedirectResource extends Resource
                             ->schema([
                                 Forms\Components\Grid::make()
                                     ->schema([
+                                        MediaPicker::make('background'),
+
                                         Forms\Components\TextInput::make('source')
                                             ->label(__('forms.labels.source'))
                                             ->placeholder(__('forms.placeholders.source'))

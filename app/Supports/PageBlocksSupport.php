@@ -2,6 +2,7 @@
 
 namespace App\Supports;
 
+use App\Forms\Components\MediaPicker;
 use App\Models\PageType;
 use Closure;
 use Filament\Forms\Components\Builder;
