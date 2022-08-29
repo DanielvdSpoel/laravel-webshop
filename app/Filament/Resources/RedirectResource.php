@@ -4,7 +4,6 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\RedirectResource\Pages;
 use App\Filament\Resources\RedirectResource\RelationManagers;
-use App\Forms\Components\MediaPicker;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Page;
@@ -20,6 +19,7 @@ use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 use Filament\Resources\Concerns\Translatable;
+use FilamentCurator\Forms\Components\MediaPicker;
 use Illuminate\Database\Eloquent\Model;
 
 
@@ -64,8 +64,8 @@ class RedirectResource extends Resource
                             ->schema([
                                 Forms\Components\Grid::make()
                                     ->schema([
+                                        //MediaPicker::make('background'),
                                         MediaPicker::make('background'),
-
                                         Forms\Components\TextInput::make('source')
                                             ->label(__('forms.labels.source'))
                                             ->placeholder(__('forms.placeholders.source'))
