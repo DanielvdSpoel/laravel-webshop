@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\PageResource\Pages;
 use App\Filament\Resources\PageResource\RelationManagers;
 use App\Models\Page;
+use App\Models\PageType;
 use App\Supports\FilamentFormLayout;
 use App\Supports\PageBlocksSupport;
 use Filament\Forms\Components\Card;
@@ -55,6 +56,7 @@ class PageResource extends Resource
             ->schema(
                 FilamentFormLayout::make()
                     ->hasSlugAndName()
+                    ->hasTimestamps()
                     //->hasVisibility()
                     ->appendToLeftColumn([
                         Card::make()
@@ -73,6 +75,7 @@ class PageResource extends Resource
                                     ->relationship('type', 'name')
                                     ->getOptionLabelFromRecordUsing(fn(Model $record) => __('forms.options.page_type.' . $record->name))
                                     ->label(__('forms.labels.type'))
+                                    ->default(PageType::where('name', 'basic_page')->first()->id)
                                     ->searchable()
                                     ->reactive()
                                     ->preload(),

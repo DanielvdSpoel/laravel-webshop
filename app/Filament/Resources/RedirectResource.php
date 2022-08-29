@@ -64,8 +64,6 @@ class RedirectResource extends Resource
                             ->schema([
                                 Forms\Components\Grid::make()
                                     ->schema([
-                                        //MediaPicker::make('background'),
-                                        MediaPicker::make('background'),
                                         Forms\Components\TextInput::make('source')
                                             ->label(__('forms.labels.source'))
                                             ->placeholder(__('forms.placeholders.source'))

@@ -68,6 +68,9 @@ return [
         "page" => "Pagina",
         "category" => "Categorie",
         "product" => "Product",
+        "content" => "Pagina inhoud",
+        "categories" => "Categorieën",
+        "title" => "Titel",
 
     ],
     "sections" => ["permissions" => "Permissies"],

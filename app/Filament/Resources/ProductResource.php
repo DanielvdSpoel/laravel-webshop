@@ -6,12 +6,14 @@ use App\Filament\Resources\ProductResource\Pages;
 use App\Filament\Resources\ProductResource\RelationManagers;
 use App\Models\Brand;
 use App\Models\Product;
+use App\Supports\FilamentFormLayout;
 use Filament\Forms;
 use Filament\Forms\Components\BelongsToSelect;
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Placeholder;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Resources\Concerns\Translatable;
@@ -22,6 +24,7 @@ use Filament\Tables;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
+use FilamentCurator\Forms\Components\MediaPicker;
 use Illuminate\Support\Str;
 
 class ProductResource extends Resource
@@ -58,87 +61,139 @@ class ProductResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
-            ->schema([
-                Forms\Components\Group::make()
-                    ->schema([
+            ->schema(
+                FilamentFormLayout::make()
+                    ->hasSlugAndName()
+                    ->hasTimestamps()
+                    ->appendToLeftColumn([
                         Card::make()
                             ->schema([
-                                Forms\Components\Grid::make()
-                                    ->schema([
-                                        Forms\Components\TextInput::make('name')
-                                            ->required()
-                                            ->label(__('forms.labels.name'))
-                                            ->reactive()
-                                            ->afterStateUpdated(fn($state, callable $set) => $set('slug', Str::slug($state))),
-                                        Forms\Components\TextInput::make('slug')
-                                            ->label(__('forms.labels.slug'))
-                                            ->disabled()
-                                            ->required()
-                                            ->unique(Product::class, 'slug', fn($record) => $record),
-                                        Forms\Components\MarkdownEditor::make('description')
-                                            ->label(__('forms.labels.description'))
-                                            ->toolbarButtons([
-                                                'bold',
-                                                'edit',
-                                                'italic',
-                                                'link',
-                                                'preview',
-                                                'strike',
-                                            ])
-                                            ->columnSpan([
-                                                'sm' => 2,
-                                            ]),
-                                    ])->columns([
-                                        'sm' => 2,
-                                        'lg' => null,
+                                Forms\Components\MarkdownEditor::make('description')
+                                    ->label(__('forms.labels.description'))
+                                    ->toolbarButtons([
+                                        'bold',
+                                        'edit',
+                                        'italic',
+                                        'link',
+                                        'preview',
+                                        'strike',
                                     ])
+                                    ->columnSpan([
+                                        'sm' => 2,
+                                    ]),
+                            ]),
+                        Card::make()
+                            ->schema([
+                                Repeater::make('images')
+                                    ->schema([
+                                        MediaPicker::make('image')->label('')
+                                    ])
+                                    ->label(__('forms.labels.images'))
+                                    ->collapsible()
 
                             ]),
+                    ])
+                    ->appendToRightColumn([
                         Card::make()
                             ->schema([
-                                SpatieMediaLibraryFileUpload::make('images')
-                                    ->label(__('forms.labels.images'))
-                                    ->multiple()
-                                    ->enableReordering(),
-                            ]),
-                    ])->columnSpan([
-                        'sm' => 2,
-                    ]),
-                Forms\Components\Group::make()
-                    ->schema([
-                        Card::make()
-                            ->schema([
-                                Placeholder::make(__('forms.labels.visibility'))
-                            ])->columnSpan(1),
-                        Card::make()
-                            ->schema([
-                                Placeholder::make(__('forms.labels.connections')),
-                                BelongsToSelect::make('brand_id')
+                                Forms\Components\Select::make('brand_id')
                                     ->relationship('brand', 'name')
-                                    ->createOptionForm(BrandResource::getFormFields())
                                     ->label(__('forms.labels.brand'))
                                     ->searchable()
                                     ->preload(),
-                                Forms\Components\BelongsToManyMultiSelect::make('categories')
+                                Forms\Components\MultiSelect::make('categories')
                                     ->relationship('categories', 'name')
-                                    ->createOptionForm(CategoryResource::getFormFields())
                                     ->label(__('forms.labels.categories'))
                                     ->searchable()
                                     ->preload(),
 
-                            ])->columnSpan(1),
-                        Forms\Components\Card::make()
-                            ->schema([
-                                Forms\Components\Placeholder::make('created_at')
-                                    ->label(__('forms.labels.created_at'))
-                                    ->content(fn(?Product $record): string => $record ? $record->created_at->diffForHumans() : '-'),
-                                Forms\Components\Placeholder::make('updated_at')
-                                    ->label(__('forms.labels.updated_at'))
-                                    ->content(fn(?Product $record): string => $record ? $record->updated_at->diffForHumans() : '-'),
                             ])
-                            ->columnSpan(1),
-                    ])->columnSpan(1),
-            ])->columns([
+                    ])
+                    ->get()
+
+
+            /*[
+            Forms\Components\Group::make()
+                ->schema([
+                    Card::make()
+                        ->schema([
+                            Forms\Components\Grid::make()
+                                ->schema([
+                                    Forms\Components\TextInput::make('name')
+                                        ->required()
+                                        ->label(__('forms.labels.name'))
+                                        ->reactive()
+                                        ->afterStateUpdated(fn($state, callable $set) => $set('slug', Str::slug($state))),
+                                    Forms\Components\TextInput::make('slug')
+                                        ->label(__('forms.labels.slug'))
+                                        ->disabled()
+                                        ->required()
+                                        ->unique(Product::class, 'slug', fn($record) => $record),
+                                    Forms\Components\MarkdownEditor::make('description')
+                                        ->label(__('forms.labels.description'))
+                                        ->toolbarButtons([
+                                            'bold',
+                                            'edit',
+                                            'italic',
+                                            'link',
+                                            'preview',
+                                            'strike',
+                                        ])
+                                        ->columnSpan([
+                                            'sm' => 2,
+                                        ]),
+                                ])->columns([
+                                    'sm' => 2,
+                                    'lg' => null,
+                                ])
+
+                        ]),
+                    Card::make()
+                        ->schema([
+                            SpatieMediaLibraryFileUpload::make('images')
+                                ->label(__('forms.labels.images'))
+                                ->multiple()
+                                ->enableReordering(),
+                        ]),
+                ])->columnSpan([
+                    'sm' => 2,
+                ]),
+            Forms\Components\Group::make()
+                ->schema([
+                    Card::make()
+                        ->schema([
+                            Placeholder::make(__('forms.labels.visibility'))
+                        ])->columnSpan(1),
+                    Card::make()
+                        ->schema([
+                            Placeholder::make(__('forms.labels.connections')),
+                            BelongsToSelect::make('brand_id')
+                                ->relationship('brand', 'name')
+                                ->createOptionForm(BrandResource::getFormFields())
+                                ->label(__('forms.labels.brand'))
+                                ->searchable()
+                                ->preload(),
+                            Forms\Components\BelongsToManyMultiSelect::make('categories')
+                                ->relationship('categories', 'name')
+                                ->createOptionForm(CategoryResource::getFormFields())
+                                ->label(__('forms.labels.categories'))
+                                ->searchable()
+                                ->preload(),
+
+                        ])->columnSpan(1),
+                    Forms\Components\Card::make()
+                        ->schema([
+                            Forms\Components\Placeholder::make('created_at')
+                                ->label(__('forms.labels.created_at'))
+                                ->content(fn(?Product $record): string => $record ? $record->created_at->diffForHumans() : '-'),
+                            Forms\Components\Placeholder::make('updated_at')
+                                ->label(__('forms.labels.updated_at'))
+                                ->content(fn(?Product $record): string => $record ? $record->updated_at->diffForHumans() : '-'),
+                        ])
+                        ->columnSpan(1),
+                ])->columnSpan(1),
+        ]*/
+            )->columns([
                 'sm' => 3,
                 'lg' => null,
             ]);
@@ -148,7 +203,6 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
-                SpatieMediaLibraryImageColumn::make('images')->label(''), //__('forms.labels.images')
                 TextColumn::make('name')->label(__('forms.labels.name'))->searchable()->sortable(),
                 TextColumn::make('description')->limit('50')->label(__('forms.labels.description'))->searchable()->wrap(),
                 TextColumn::make('brand.name')->label(__('forms.labels.brand'))->searchable()->sortable(),

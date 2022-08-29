@@ -25,6 +25,7 @@ class Product extends Model
         'name',
         'description',
         'slug',
+        'images',
     ];
 
     public function brand(): BelongsTo
@@ -36,4 +37,8 @@ class Product extends Model
     {
         return $this->belongsToMany(Category::class);
     }
+
+    protected $casts = [
+        'images' => 'array',
+    ];
 }

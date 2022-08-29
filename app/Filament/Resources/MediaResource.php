@@ -1,5 +1,8 @@
 <?php
 
+use App\Filament\Resources\MediaResource\Pages\CreateMedia;
+use App\Filament\Resources\MediaResource\Pages\EditMedia;
+use App\Filament\Resources\MediaResource\Pages\ListMedia;
 use FilamentCurator\Resources\MediaResource as CuratorMediaResource;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
@@ -16,9 +19,6 @@ use Filament\Tables\Actions\DeleteAction;
 use Filament\Forms\Components\Placeholder;
 use FilamentCurator\Forms\Components\MediaUpload;
 use FilamentCurator\Tables\Columns\ThumbnailColumn;
-use FilamentCurator\Resources\MediaResource\Pages\EditMedia;
-use FilamentCurator\Resources\MediaResource\Pages\CreateMedia;
-use Filament\Resources\Resource;
 
 class MediaResource extends CuratorMediaResource
 {
@@ -77,15 +77,6 @@ class MediaResource extends CuratorMediaResource
                                 Placeholder::make('dimensions')
                                     ->label(__('filament-curator::resource.labels.dimensions'))
                                     ->content(fn ($record): string => $record ? $record->width . ' x ' . $record->height : '-'),
-                                Placeholder::make('disk')
-                                    ->label(__('filament-curator::resource.labels.disk'))
-                                    ->content(fn ($record): string => $record ? $record->disk : '-'),
-                                Placeholder::make('directory')
-                                    ->label(__('filament-curator::resource.labels.directory'))
-                                    ->content(fn ($record): string => $record ? $record->directory : '-'),
-                                Placeholder::make('public_id')
-                                    ->label(__('filament-curator::resource.labels.public_id'))
-                                    ->content(fn ($record): string => $record ? $record->public_id : '-')->columnSpan(['lg' => 4]),
                                 Placeholder::make('file_url')
                                     ->label(__('filament-curator::resource.labels.file_url'))
                                     ->content(fn ($record): string => $record ? $record->url : '-')->columnSpan(['lg' => 4]),
@@ -129,26 +120,13 @@ class MediaResource extends CuratorMediaResource
         return $table
             ->columns([
                 ThumbnailColumn::make('thumbnail_url')->size(40),
-                TextColumn::make('public_id')
-                    ->label(__('filament-curator::resource.labels.public_id'))
+                TextColumn::make('title')
+                    ->label(__('forms.labels.title'))
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('ext')
                     ->label(__('filament-curator::resource.labels.ext'))
                     ->sortable(),
-                IconColumn::make('disk')
-                    ->label(__('filament-curator::resource.labels.disk'))
-                    ->options([
-                        'heroicon-o-server',
-                        'heroicon-o-cloud' => function ($state): bool {
-                            return in_array($state, config('filament-curator.cloud_disks'));
-                        },
-                    ])
-                    ->colors([
-                        'secondary', 'success' => function ($state): bool {
-                            return in_array($state, config('filament-curator.cloud_disks'));
-                        },
-                    ]),
                 TextColumn::make('updated_at')
                     ->label(__('filament-curator::resource.labels.updated_at'))
                     ->date()
@@ -161,5 +139,14 @@ class MediaResource extends CuratorMediaResource
                 EditAction::make()->iconButton(),
                 DeleteAction::make()->iconButton(),
             ]);
+    }
+
+    public static function getPages(): array
+    {
+        return [
+            'index' => ListMedia::route('/'),
+            'create' => CreateMedia::route('/create'),
+            'edit' => EditMedia::route('/{record}/edit'),
+        ];
     }
 }

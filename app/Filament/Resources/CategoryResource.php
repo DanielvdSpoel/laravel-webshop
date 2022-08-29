@@ -6,10 +6,13 @@ use App\Filament\Resources\CategoryResource\Pages;
 use App\Filament\Resources\CategoryResource\RelationManagers;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\PageType;
+use App\Supports\FilamentFormLayout;
 use Closure;
 use Filament\Forms;
 use Filament\Forms\Components\BelongsToManyMultiSelect;
 use Filament\Forms\Components\BelongsToSelect;
+use Filament\Forms\Components\Card;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Resources\Concerns\Translatable;
@@ -20,6 +23,7 @@ use Filament\Tables;
 use Filament\Tables\Columns\TagsColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
 class CategoryResource extends Resource
@@ -55,70 +59,38 @@ class CategoryResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
-            ->schema([
-                Forms\Components\Card::make()
-                    ->schema(static::getFormFields())
-                    ->columnSpan([
-                        'sm' => 2,
-                    ]),
-                Forms\Components\Card::make()
-                    ->schema([
-                        Forms\Components\Placeholder::make('created_at')
-                            ->label(__('forms.labels.created_at'))
-                            ->content(fn(?Category $record): string => $record ? $record->created_at->diffForHumans() : '-'),
-                        Forms\Components\Placeholder::make('updated_at')
-                            ->label(__('forms.labels.updated_at'))
-                            ->content(fn(?Category $record): string => $record ? $record->updated_at->diffForHumans() : '-'),
+            ->schema(
+                FilamentFormLayout::make()
+                    ->hasSlugAndName()
+                    ->hasTimestamps()
+                    ->appendToLeftColumn([
+                        Card::make()
+                            ->schema([
+                                Forms\Components\MarkdownEditor::make('description')
+                                    ->label(__('forms.labels.description')),
+                            ]),
                     ])
-                    ->columnSpan(1),
-            ])
-            ->columns([
+                    ->appendToRightColumn([
+                        Card::make()
+                            ->schema([
+                                Select::make('parent_id')
+                                    ->label(__('forms.labels.parent_category'))
+                                    ->options(function (?Model $record) {
+                                        if ($record) {
+                                            return Category::where('id', '!=', $record->id)->where('parent_id', '!=', $record->id)->pluck('name', 'id');
+                                        }
+                                        return Category::pluck('name', 'id');
+                                    })
+                                    ->searchable()
+                                    ->preload(),
+                            ]),
+                    ])
+                    ->get()
+        )->columns([
                 'sm' => 3,
                 'lg' => null,
             ]);
     }
-
-    public static function getFormFields(): array
-    {
-        return [
-            Forms\Components\Grid::make()
-                ->schema([
-                    Forms\Components\TextInput::make('name')
-                        ->label(__('forms.labels.name'))
-                        ->required()
-                        ->reactive()
-                        ->afterStateUpdated(fn($state, callable $set) => $set('slug', Str::slug($state))),
-                    Forms\Components\TextInput::make('slug')
-                        ->label(__('forms.labels.slug'))
-                        ->disabled()
-                        ->required()
-                        ->unique(Category::class, 'slug', fn($record) => $record),
-                ]),
-
-            Forms\Components\Toggle::make('is_visible')
-                ->label(__('forms.labels.is_visible'))
-                ->default(true),
-            Forms\Components\MarkdownEditor::make('description')
-                ->label(__('forms.labels.description')),
-
-            Forms\Components\Grid::make()
-                ->schema([
-                    BelongsToSelect::make('parent_id')
-                        ->label(__('forms.labels.parent_category'))
-                        ->relationship('parent', 'name'),
-
-                    /*BelongsToManyMultiSelect::make('children')
-                        ->label(__('forms.labels.children_categories'))
-                        ->relationship('children', 'name'),*/
-
-                    /*Select::make('children')
-                        ->options(fn(callable $get) => Category::query()->whereNull('parent_id')->where('id', '!=', $get('parent_id'))->pluck('name', 'id')
-                        )->multiple()->searchable(),*/
-
-                ]),
-        ];
-    }
-
 
     public static function table(Table $table): Table
     {
