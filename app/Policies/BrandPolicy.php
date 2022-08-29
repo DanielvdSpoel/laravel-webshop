@@ -3,6 +3,8 @@
 namespace App\Policies;
 
 use App\Models\Brand;
+use App\Models\Employee;
+use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class BrandPolicy
@@ -15,7 +17,7 @@ class BrandPolicy
      * @param  \App\Models\Brand  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function viewAny(Brand $user)
+    public function viewAny(Employee $user)
     {
         return $user->can('view_any_brand');
     }
