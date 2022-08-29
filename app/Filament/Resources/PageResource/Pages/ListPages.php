@@ -13,11 +13,6 @@ class ListPages extends ListRecords
 
     use ListRecords\Concerns\Translatable;
 
-    public static function getTranslatableLocales(): array
-    {
-        return array_keys(config('webshop.available_languages', ['en']));
-    }
-
     protected function getActions(): array
     {
         return [

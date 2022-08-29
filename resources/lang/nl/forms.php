@@ -4,7 +4,7 @@ return [
         "password" => "Een wachtwoord moet minimaal 8 tekens, een hoofdletter en een kleine letter bevatten.",
         "select_all" => "Selecteer alle beschikbare opties",
         "slug" => "De slug word gegenereerd vanuit de Engelse naam en word gebruikt in de url",
-        "source" => "Deze redirect overschrijft elke andere pagina die de zelfde url heeft"
+        "source" => "Deze redirect overschrijft een eventuele pagina die de zelfde url heeft"
     ],
     "labels" => [
         "2fa_code" => "Tweestapsverificatie code",
@@ -84,10 +84,17 @@ return [
             "url" => "Url",
             "product" => "Product",
             "category" => "Categorie",
+            "brand" => "Merk",
         ],
+        "page_type" => [
+            "basic_page" => "Standaard pagina",
+            "product_page" => "Product pagina",
+            "category_page" => "Categorie pagina",
+            "brand_page" => "Merk pagina",
+        ]
     ],
     "placeholders" => [
-        "destination" => "/de-oude-url",
-        "source" => "/de-nieuwe-url",
+        "destination" => "/de-nieuwe-url",
+        "source" => "/de-oude-url",
     ]
 ];

@@ -41,4 +41,4 @@ Route::middleware('auth')->group(function () {
     });
 });
 
-//Route::fallback([PageController::class, 'handleFallback']);
+Route::fallback([PageController::class, 'handleFallback']);

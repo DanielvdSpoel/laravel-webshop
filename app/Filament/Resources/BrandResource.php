@@ -74,7 +74,7 @@ class BrandResource extends Resource
     public static function getFormFields(): array
     {
         return [
-            Forms\Components\Grid::make()
+            /*Forms\Components\Grid::make()
                 ->schema([
                     Forms\Components\TextInput::make('name')
                         ->label(__('forms.labels.name'))
@@ -92,11 +92,12 @@ class BrandResource extends Resource
                 ->label(__('forms.labels.logo'))
                 ->image(),
 
+
+            Forms\Components\MarkdownEditor::make('description')
+                ->label(__('forms.labels.description'))*/
             Forms\Components\Toggle::make('is_visible')
                 ->label(__('forms.labels.is_visible'))
                 ->default(true),
-            Forms\Components\MarkdownEditor::make('description')
-                ->label(__('forms.labels.description'))
         ];
     }
 

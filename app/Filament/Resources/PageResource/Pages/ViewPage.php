@@ -13,11 +13,6 @@ class ViewPage extends ViewRecord
 
     use ViewRecord\Concerns\Translatable;
 
-    public static function getTranslatableLocales(): array
-    {
-        return array_keys(config('webshop.available_languages', ['en']));
-    }
-
     protected function getActions(): array
     {
         return [

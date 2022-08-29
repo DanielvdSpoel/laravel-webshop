@@ -14,14 +14,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
-            $table->id();
-            $table->json('name');
-            $table->string('slug')->unique();
-            $table->boolean('is_visible')->default(true);
-            $table->timestamps();
+        Schema::table('categories', function (Blueprint $table) {
+            $table->unsignedBigInteger('parent_id')->nullable();
+            $table->foreign('parent_id')->references('id')->on('categories')->nullOnDelete();
         });
-
     }
 
     /**
@@ -31,6 +27,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::table('categories', function (Blueprint $table) {
+            //
+        });
     }
 };

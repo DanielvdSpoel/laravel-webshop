@@ -14,11 +14,6 @@ class EditPage extends EditRecord
 
     use EditRecord\Concerns\Translatable;
 
-    public static function getTranslatableLocales(): array
-    {
-        return array_keys(config('webshop.available_languages', ['en']));
-    }
-
     protected function getActions(): array
     {
         return [
@@ -26,5 +21,11 @@ class EditPage extends EditRecord
             DeleteAction::make(),
             LocaleSwitcher::make(),
         ];
+    }
+
+    public function updatedActiveFormLocale(): void
+    {
+        $this->record->setLocale($this->activeFormLocale);
+        $this->fillForm();
     }
 }

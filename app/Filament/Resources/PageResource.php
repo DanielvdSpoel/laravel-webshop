@@ -5,31 +5,18 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\PageResource\Pages;
 use App\Filament\Resources\PageResource\RelationManagers;
 use App\Models\Page;
-use App\Models\PageType;
-use App\Models\Product;
+use App\Supports\FilamentFormLayout;
 use App\Supports\PageBlocksSupport;
-use App\Supports\TranslationSupport;
-use Filament\Forms;
-use Filament\Forms\Components\BelongsToSelect;
-use Filament\Forms\Components\Builder;
-use Filament\Forms\Components\Builder\Block;
 use Filament\Forms\Components\Card;
-use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\KeyValue;
-use Filament\Forms\Components\MarkdownEditor;
-use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
-use Filament\Forms\Components\TextInput;
 use Filament\Resources\Concerns\Translatable;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
-use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
-use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Model;
 
 class PageResource extends Resource
 {
@@ -65,104 +52,39 @@ class PageResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
-            ->schema([
-                Forms\Components\Group::make()
-                    ->schema([
+            ->schema(
+                FilamentFormLayout::make()
+                    ->hasSlugAndName()
+                    //->hasVisibility()
+                    ->appendToLeftColumn([
                         Card::make()
                             ->schema([
-                                Forms\Components\Grid::make()
-                                    ->schema([
-                                        Forms\Components\TextInput::make('name')
-                                            ->required()
-                                            ->label(__('forms.labels.name'))
-                                            ->reactive()
-                                            ->afterStateUpdated(fn($state, callable $set) => $set('slug', Str::slug($state))),
-                                        Forms\Components\TextInput::make('slug')
-                                            ->label(__('forms.labels.slug'))
-                                            ->disabled()
-                                            ->required()
-                                            ->unique(Product::class, 'slug', fn($record) => $record),
-                                    ])->columns([
-                                        'sm' => 2,
-                                        'lg' => null,
-                                    ])
-
-                            ]),
-                        Card::make()
-                            ->schema([
-                                Builder::make('content')
-                                    ->blocks([
-                                        Builder\Block::make('heading_with_background')
-                                            ->label(__('blocks.full-width_with_background'))
-                                            ->icon('heroicon-o-photograph')
-                                            ->schema([
-                                                TextInput::make('button_url')
-                                                    ->label(__('forms.labels.button_url'))
-                                                    ->required(),
-                                                PageBlocksSupport::getTranslationField('button_text'),
-                                                PageBlocksSupport::getTranslationField('section_title'),
-                                                PageBlocksSupport::getTranslationField('section_description'),
-                                                FileUpload::make('background')
-                                                    ->label(__('forms.labels.background'))
-                                                    ->image()
-
-
-                                            ]),
-                                    ])
-
+                                PageBlocksSupport::getContentBuilder('basic', PageBlocksSupport::getBasicPageBlocks()),
+                                PageBlocksSupport::getContentBuilder('brand', PageBlocksSupport::getBrandPageBlocks()),
+                                PageBlocksSupport::getContentBuilder('category', PageBlocksSupport::getCategoryPageBlocks()),
+                                PageBlocksSupport::getContentBuilder('product', PageBlocksSupport::getProductPageBlocks()),
 
                             ])
-                    ])->columnSpan([
-                        'sm' => 2,
-                    ]),
-                Forms\Components\Group::make()
-                    ->schema([
+                    ])
+                    ->appendToRightColumn([
                         Card::make()
                             ->schema([
-                                Placeholder::make(__('forms.labels.visibility')),
-                                Forms\Components\Toggle::make('is_visible')
-                                    ->label(__('forms.labels.is_visible'))
-                                    ->default(true)
-                                    ->required(),
-                            ])->columnSpan(1),
-                        Card::make()
-                            ->schema([
-                                BelongsToSelect::make('type_id')
+                                Select::make('type_id')
                                     ->relationship('type', 'name')
+                                    ->getOptionLabelFromRecordUsing(fn(Model $record) => __('forms.options.page_type.' . $record->name))
                                     ->label(__('forms.labels.type'))
                                     ->searchable()
                                     ->reactive()
                                     ->preload(),
 
                             ])->columnSpan(1),
-                        Forms\Components\Card::make()
-                            ->schema([
-                                Forms\Components\Placeholder::make('created_at')
-                                    ->label(__('forms.labels.created_at'))
-                                    ->content(fn(?Page $record): string => $record ? $record->created_at->diffForHumans() : '-'),
-                                Forms\Components\Placeholder::make('updated_at')
-                                    ->label(__('forms.labels.updated_at'))
-                                    ->content(fn(?Page $record): string => $record ? $record->updated_at->diffForHumans() : '-'),
-                            ])
-                            ->columnSpan(1),
-                    ])->columnSpan(1),
-            ])->columns([
+                    ])
+                    ->hasTimestamps()
+                    ->get()
+            )->columns([
                 'sm' => 3,
                 'lg' => null,
             ]);
-        /*->schema([
-            Forms\Components\TextInput::make('name')
-                ->required(),
-            Forms\Components\TextInput::make('slug')
-                ->required()
-                ->maxLength(191),
-            Forms\Components\TextInput::make('content'),
-            Forms\Components\Toggle::make('is_visible')
-                ->required(),
-            Forms\Components\Toggle::make('can_be_deleted')
-                ->required(),
-            Forms\Components\TextInput::make('page_type_id'),
-        ]);*/
     }
 
     public static function table(Table $table): Table
