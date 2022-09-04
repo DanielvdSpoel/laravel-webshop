@@ -1,1 +1,4 @@
 @import '../../vendor/filament/filament/resources/css/app.css';
+.filament-forms-builder-component-block-picker {
+    width: 17rem;
+}

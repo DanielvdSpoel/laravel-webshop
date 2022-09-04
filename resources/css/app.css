@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .filament-forms-builder-component-block-picker  {
+        @apply w-56
+    }
+}

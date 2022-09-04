@@ -7,6 +7,7 @@ use App\Filament\Resources\PageResource\RelationManagers;
 use App\Models\Page;
 use App\Models\PageType;
 use App\Supports\FilamentFormLayout;
+use App\Supports\PageBlockManager;
 use App\Supports\PageBlocksSupport;
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\Select;
@@ -18,6 +19,7 @@ use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\App;
 
 class PageResource extends Resource
 {
@@ -61,10 +63,10 @@ class PageResource extends Resource
                     ->appendToLeftColumn([
                         Card::make()
                             ->schema([
-                                PageBlocksSupport::getContentBuilder('basic', PageBlocksSupport::getBasicPageBlocks()),
-                                PageBlocksSupport::getContentBuilder('brand', PageBlocksSupport::getBrandPageBlocks()),
-                                PageBlocksSupport::getContentBuilder('category', PageBlocksSupport::getCategoryPageBlocks()),
-                                PageBlocksSupport::getContentBuilder('product', PageBlocksSupport::getProductPageBlocks()),
+                                PageBlockManager::getContentBuilder('basic_page', App::make(PageBlockManager::class)->getBlocksInCategories(['basic'])),
+                                PageBlockManager::getContentBuilder('brand_page', App::make(PageBlockManager::class)->getBlocksInCategories(['basic', 'brand'])),
+                                PageBlockManager::getContentBuilder('category_page', App::make(PageBlockManager::class)->getBlocksInCategories(['basic', 'category'])),
+                                PageBlockManager::getContentBuilder('product_page', App::make(PageBlockManager::class)->getBlocksInCategories(['basic', 'product'])),
 
                             ])
                     ])

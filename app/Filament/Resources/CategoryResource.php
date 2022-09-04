@@ -77,7 +77,9 @@ class CategoryResource extends Resource
                                     ->label(__('forms.labels.parent_category'))
                                     ->options(function (?Model $record) {
                                         if ($record) {
-                                            return Category::where('id', '!=', $record->id)->where('parent_id', '!=', $record->id)->pluck('name', 'id');
+                                            return Category::where('id', '!=', $record->id)
+                                                ->whereNull('parent_id')
+                                                ->pluck('name', 'id');
                                         }
                                         return Category::pluck('name', 'id');
                                     })
@@ -86,7 +88,7 @@ class CategoryResource extends Resource
                             ]),
                     ])
                     ->get()
-        )->columns([
+            )->columns([
                 'sm' => 3,
                 'lg' => null,
             ]);

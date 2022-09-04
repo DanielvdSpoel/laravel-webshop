@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\MediaController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShowAuthViewsController;
 use App\Http\Controllers\UpdateLanguageController;
 use App\Models\Category;
+use App\Supports\PageBlockManager;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,9 +20,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+Route::get('/blocks', function (PageBlockManager $pageBlockManager) {
+    dd($pageBlockManager->getBlocks());
+});
 //Route::get('/', [PageController::class, 'home'])->name('home');
 Route::patch('/update-language', UpdateLanguageController::class)->name('update-language');
+Route::get('/media/{media}', MediaController::class)->name('media');
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [ShowAuthViewsController::class, 'login'])->name('login');

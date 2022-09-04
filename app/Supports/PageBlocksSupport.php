@@ -2,14 +2,16 @@
 
 namespace App\Supports;
 
-use App\Forms\Components\MediaPicker;
+use App\Models\Category;
 use App\Models\PageType;
 use Closure;
 use Filament\Forms\Components\Builder;
 use Filament\Forms\Components\Builder\Block;
 use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\KeyValue;
+use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use FilamentCurator\Forms\Components\MediaPicker;
 
 class PageBlocksSupport
 {
@@ -19,10 +21,11 @@ class PageBlocksSupport
             ->label(__('forms.labels.content'))
             ->blocks($blocks)
             ->hidden(function (Closure $get) use ($pageType) {
-                $type = PageType::where('name', $pageType .  '_page')->first();
+                $type = PageType::where('name', $pageType)->first();
                 return $get('type_id') != $type->id;
             });
     }
+
     static function getBrandPageBlocks(): array
     {
         return [
@@ -47,26 +50,34 @@ class PageBlocksSupport
     static function getBasicPageBlocks(): array
     {
         return [
-            Block::make('heading_with_background')
-                ->label(__('blocks.full-width_with_background'))
+
+            Block::make('category_products_list')
+                ->label(__('blocks.category_products_list'))
                 ->icon('heroicon-o-photograph')
                 ->schema([
-                    TextInput::make('button_url')
-                        ->label(__('forms.labels.button_url'))
+                    Select::make('category')
+                        ->options(Category::all()->pluck('name', 'id'))
+                        ->searchable()
+                        ->preload()
+                        ->label(__('forms.labels.category'))
                         ->required(),
-                    TextInput::make('button_text')
-                        ->label(__('forms.labels.button_text'))
+                    TextInput::make('product_count')
+                        ->label(__('forms.labels.product_count'))
+                        ->numeric()
+                        ->minValue(1)
                         ->required(),
-                    TextInput::make('section_title')
-                        ->label(__('forms.labels.section_title'))
+                    TextInput::make('header_text')
+                        ->label(__('forms.labels.header_text'))
                         ->required(),
-                    TextInput::make('section_description')
-                        ->label(__('forms.labels.section_description'))
-                        ->required(),
-                    FileUpload::make('background')
-                        ->label(__('forms.labels.background'))
-                        ->image()
+                    Select::make('sort_by')
+                        ->options([
+                            'latest' => __('forms.labels.latest'),
+                            'most_purchased' => __('forms.labels.most_purchased'),
+                        ])
+
+
                 ])
+
 
         ];
 

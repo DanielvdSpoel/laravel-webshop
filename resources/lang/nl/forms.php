@@ -71,6 +71,13 @@ return [
         "content" => "Pagina inhoud",
         "categories" => "Categorieën",
         "title" => "Titel",
+        "buttons" => "Knoppen",
+        "most_purchased" => "Meest verkocht",
+        "latest" => "Recents toegevoegd",
+        "sort_by" => "Sorteren op",
+        "header_text" => "Titeltekst",
+
+
 
     ],
     "sections" => ["permissions" => "Permissies"],

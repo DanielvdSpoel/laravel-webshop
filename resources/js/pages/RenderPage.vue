@@ -9,9 +9,11 @@
 import StoreLayout from "../layouts/StoreLayout";
 import { v4 as uuidv4 } from 'uuid';
 import HeadingWithBackground from "../components/PageBlocks/HeadingWithBackground";
+import SplitHero from "../components/PageBlocks/SplitHero";
+import CategoryProductsList from "../components/PageBlocks/CategoryProductsList";
 export default {
     name: "RenderPage",
-    components: {StoreLayout, HeadingWithBackground},
+    components: {StoreLayout, HeadingWithBackground, SplitHero, CategoryProductsList},
     props: {
         page: Object
     },

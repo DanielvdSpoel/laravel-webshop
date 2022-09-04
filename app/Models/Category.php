@@ -25,6 +25,7 @@ class Category extends Model
         'name',
         'is_visible',
         'slug',
+        'parent_id',
     ];
 
     public function parent(): BelongsTo
