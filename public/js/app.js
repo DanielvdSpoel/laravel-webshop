@@ -26617,18 +26617,34 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     content: Object
   },
+  mounted: function mounted() {
+    this.loadProducts();
+    this.loadCategory();
+  },
+  methods: {
+    loadProducts: function loadProducts() {
+      var _this = this;
+
+      axios.get(route('api.products.index')).then(function (response) {
+        _this.products = response.data.data;
+      });
+    },
+    loadCategory: function loadCategory() {
+      var _this2 = this;
+
+      axios.get(route('api.categories.show', {
+        category: this.content.category
+      })).then(function (response) {
+        _this2.category = response.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
+  },
   data: function data() {
     return {
-      products: [{
-        id: 1,
-        name: 'Leather Long Wallet',
-        color: 'Natural',
-        price: '$75',
-        href: '#',
-        imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-04-trending-product-02.jpg',
-        imageAlt: 'Hand stitched, orange leather long wallet.'
-      } // More products...
-      ]
+      category: null,
+      products: null
     };
   }
 });

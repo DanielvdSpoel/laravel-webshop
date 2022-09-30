@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use FilamentCurator\Models\Media;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ProductResource extends JsonResource
@@ -14,6 +15,16 @@ class ProductResource extends JsonResource
      */
     public function toArray($request)
     {
+        $images = [];
+        foreach ($this->images as $image) {
+            $media = Media::find($image['image']);
+            $images[] = [
+                'id' => $media->id,
+                'alt' => $media->alt,
+                'url' => $media->url,
+            ];
+        }
+
         return [
             'id' => $this->id,
             'name' => $this->name,
@@ -21,6 +32,7 @@ class ProductResource extends JsonResource
             'description' => $this->description,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
+            'images' => $images,
             'categories' => CategoryResource::collection($this->whenLoaded('categories')),
             'urls' => [
                 'show' => 'Something',

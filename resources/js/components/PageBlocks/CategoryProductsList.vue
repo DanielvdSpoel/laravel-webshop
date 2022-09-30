@@ -41,20 +41,31 @@ export default {
     props: {
         content: Object
     },
+    mounted() {
+        this.loadProducts();
+        this.loadCategory();
+    },
+    methods: {
+        loadProducts() {
+            axios.get(route('api.products.index'))
+                .then(response => {
+                    this.products = response.data.data
+                });
+        },
+        loadCategory() {
+            axios.get(route('api.categories.show', {category: this.content.category}))
+                .then(response => {
+                    this.category = response.data;
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
+    },
     data() {
         return {
-            products: [
-                {
-                    id: 1,
-                    name: 'Leather Long Wallet',
-                    color: 'Natural',
-                    price: '$75',
-                    href: '#',
-                    imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-04-trending-product-02.jpg',
-                    imageAlt: 'Hand stitched, orange leather long wallet.',
-                },
-                // More products...
-            ]
+            category: null,
+            products: null
         }
     }
 }
